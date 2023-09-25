@@ -9,23 +9,25 @@ import lsi.fonctionalite.data.ActionsBDDImpl;
 import lsi.fonctionalite.exception.InvalidChoiceException;
 import lsi.fonctionalite.utils.Programmeur;
 
-public  class Menu {
+public class Menu {
 
     private ActionsBDD actionsBDD;
-    public Menu(){
+
+    public Menu() {
         actionsBDD = new ActionsBDDImpl();
     }
 
-    public void printMenu(){
+    public void printMenu() {
         System.out.println("\n");
-        System.out.println("§§§§§§§§§§§§§ Menu §§§§§§§§§§§§§");
+        System.out.println("Menu:");
         System.out.println("\n");
         System.out.println("1. Afficher tous les programmmes");
         System.out.println("2. Afficher un programmeur");
         System.out.println("3. Supprimer un programmeur");
         System.out.println("4. Ajouter un programmeur");
         System.out.println("5. Modifier le salaire");
-        System.out.println("6. Quitter le programme");
+        System.out.println("6. Autres");
+        System.out.println("7. Quitter le programme");
         System.out.println("Faites un choix !");
     }
 
@@ -87,6 +89,31 @@ public  class Menu {
                         actionsBDD.modifySalaire(idProgrammeurSalary, salaryModify);
                         break;
                     case 6:
+                        autreFonction();
+                        int choix2 = scanner.nextInt();
+                        try {
+                            validateChoice(choix2);
+                            switch (choix2) {
+                                case 1:
+                                    actionsBDD.printBestSalaryProgrammeur();
+                                break;
+                                case 2:
+                                    actionsBDD.printSameResponsableProgrammeur();
+                                break;
+                                case 3:
+                                    actionsBDD.printCommonObjectProgrammeur();
+                                break;
+                                case 4:
+                                    actionsBDD.diagramAgeOfProgrammeur();
+                                break;
+                                case 5:
+                                    selectMenu();
+                                break;
+                            }
+                        }catch (InvalidChoiceException e) {
+                System.out.println(e.getMessage());
+            }
+                    case 7:
                         exitRequested = true;
                         System.out.println("Vous avez quitté le programme.");
                         break;
@@ -96,13 +123,19 @@ public  class Menu {
             }
         } while (!exitRequested);
     }
-    
+
+    private void autreFonction() {
+        System.out.println("1. Qui est le programmeur le mieux payé");
+        System.out.println("2. Qui sont les programmeur qui ont le même responsable");
+        System.out.println("3. Element en commun");
+        System.out.println("4. Diagramme moyenne d'âge des programmeurs");
+        System.out.println("5. Retour");
+    }
 
     public void validateChoice(int choix) throws InvalidChoiceException {
-        if (choix < 1 || choix > 6) {
+        if (choix < 1 || choix > 7) {
             throw new InvalidChoiceException("ERREUR! Veuillez entrer un nombre entre 1 et 6.");
         }
     }
 
-    
 }

@@ -203,6 +203,30 @@ public class ActionsBDDImpl implements ActionsBDD {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void printBestSalaryProgrammeur() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'printBestSalaryProgrammeur'");
+    }
+
+    @Override
+    public void printSameResponsableProgrammeur() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'printSameResponsableProgrammeur'");
+    }
+
+    @Override
+    public void printCommonObjectProgrammeur() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'printCommonObjectProgrammeur'");
+    }
+
+    @Override
+    public void diagramAgeOfProgrammeur() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'diagramAgeOfProgrammeur'");
+    }
     
     
 

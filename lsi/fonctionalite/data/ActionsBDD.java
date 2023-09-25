@@ -18,4 +18,12 @@ public interface ActionsBDD {
 
     public abstract void printProgrammeur(int id);
 
+    public abstract void printBestSalaryProgrammeur();
+
+    public abstract void printSameResponsableProgrammeur();
+
+    public abstract void printCommonObjectProgrammeur();
+
+    public abstract void diagramAgeOfProgrammeur();
+
 }
