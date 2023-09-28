@@ -90,7 +90,7 @@ public class Menu {
                         actionsBDD.modifySalaire(idProgrammeurSalary, salaryModify);
                         break;
                     case 6:
-                        boolean exitMenu6 = true;
+                        boolean exitMenu6 = false;
                         do {
                             autreFonction();
                             int choix2 = scanner.nextInt();
@@ -112,8 +112,7 @@ public class Menu {
                                         actionsBDD.diagramAgeOfProgrammeur();
                                         break;
                                     case 5:
-                                        exitMenu6 = false;
-                                        selectMenu();
+                                        exitMenu6 = true;
                                         break;
                                 }
                             } catch (InvalidChoiceException e) {
