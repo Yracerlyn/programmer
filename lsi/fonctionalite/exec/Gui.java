@@ -1,24 +1,16 @@
 package lsi.fonctionalite.exec;
 
+import lsi.fonctionalite.data.ActionsBDD;
+import lsi.fonctionalite.data.ActionsBDDImpl;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Gui extends JFrame {
 
     public Gui(){
-
-        /*JLabel label = new JLabel();
-        label.setText("test");
-        label.setVisible(true);
-
-
-        JFrame frame = new JFrame(); //creates a frame
-        frame.setTitle("User Managment"); //sets title of frame
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //exit out of application
-        frame.setResizable(false); //prevent frame from being resized
-        frame.setSize(420,420); //sets the x-dimension, and y-dimension of frame
-        frame.setVisible(true); //make frame visible
-        frame.add(label);*/
 
         setTitle("Gestion des Utilisateurs");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,6 +18,11 @@ public class Gui extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(7, 1));
+
+        JTextArea resultTextArea = new JTextArea();
+        resultTextArea.setEditable(false); // Empêche l'édition du texte
+        JScrollPane scrollPane = new JScrollPane(resultTextArea);
+        panel.add(scrollPane, BorderLayout.CENTER);
 
         JButton btnAfficherTous = new JButton("Afficher tous les programmes");
         JButton btnAfficherUn = new JButton("Afficher un programmeur");
@@ -35,16 +32,82 @@ public class Gui extends JFrame {
         JButton btnAutres = new JButton("Autres");
         JButton btnQuitter = new JButton("Quitter le programme");
 
-        panel.add(btnAfficherTous);
-        panel.add(btnAfficherUn);
-        panel.add(btnSupprimer);
-        panel.add(btnAjouter);
-        panel.add(btnModifierSalaire);
-        panel.add(btnAutres);
-        panel.add(btnQuitter);
+        JPanel btnPanel = new JPanel();
+        btnPanel.setLayout(new GridLayout(7, 1));
+        btnPanel.add(btnAfficherTous);
+        btnPanel.add(btnAfficherUn);
+        btnPanel.add(btnSupprimer);
+        btnPanel.add(btnAjouter);
+        btnPanel.add(btnModifierSalaire);
+        btnPanel.add(btnAutres);
+        btnPanel.add(btnQuitter);
+        panel.add(btnPanel, BorderLayout.WEST);
 
         add(panel);
+
+        /*JTextArea resultTextArea = new JTextArea();
+        resultTextArea.setEditable(false); // Empêche l'édition du texte
+        JScrollPane scrollPane = new JScrollPane(resultTextArea);
+        panel.add(scrollPane, BorderLayout.CENTER);*/
+
+        /*btnAfficherTous.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ActionsBDDImpl actionsBDD = new ActionsBDDImpl();
+                String resultat = actionsBDD.printAllProgrammeur();
+                afficherResultat(resultat);
+            }
+        });*/
+
+
+        ActionsBDD actionsBDD = new ActionsBDDImpl(); // Instanciez la classe ActionsBDDImpl
+
+        btnAfficherTous.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String resultat = actionsBDD.printAllProgrammeur(); // Appelez la méthode correspondante
+                afficherResultat(resultat);
+            }
+        });
+
+        btnAfficherUn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Gui.this, "Afficher un programmeur");
+            }
+        });
+
+        btnSupprimer.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Gui.this, "Supprimer un programmeur");
+            }
+        });
+
+        btnAjouter.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Gui.this, "Ajouter un programmeur");
+            }
+        });
+
+        btnModifierSalaire.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Gui.this, "Modifier le salaire");
+            }
+        });
+
+        btnAutres.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(Gui.this, "Autres actions");
+            }
+        });
+
+        btnQuitter.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+    }
+    public void afficherResultat(String resultat) {
+        Label resultTextArea = new Label();
+        resultTextArea.setText(resultat);
     }
 
-     
 }

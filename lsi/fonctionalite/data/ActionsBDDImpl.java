@@ -117,7 +117,7 @@ public class ActionsBDDImpl implements ActionsBDD {
     }
 
     @Override
-    public void printAllProgrammeur() {
+    public String printAllProgrammeur() {
         try {
             dataBaseConnection(); // Établir une connexion à la base de données
 
@@ -160,6 +160,7 @@ public class ActionsBDDImpl implements ActionsBDD {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     @Override
