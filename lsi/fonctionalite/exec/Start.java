@@ -12,7 +12,7 @@ public class Start {
     // public static void main(String[] args) {
     //     Menu menu = new Menu();
     //     menu.selectMenu();
-        
+
     // }
 
     public static void main(String[] args) {
@@ -22,10 +22,10 @@ public class Start {
             public void run() {
                 Gui gui = new Gui();
                 gui.setVisible(true);
+                System.out.println("tst");
             }
         });
     }
-
 
 }
 
