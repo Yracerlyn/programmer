@@ -113,7 +113,6 @@ public class Menu {
                                         break;
                                     case 5:
                                         exitMenu6 = true;
-                                        selectMenu();
                                         break;
                                 }
                             } catch (InvalidChoiceException e) {

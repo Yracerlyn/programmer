@@ -54,6 +54,7 @@ public class Gui extends JFrame {
         panel.add(btnPanel, BorderLayout.WEST);
 
         add(panel);
+    
 
         /*JTextArea resultTextArea = new JTextArea();
         resultTextArea.setEditable(false); // Empêche l'édition du texte
