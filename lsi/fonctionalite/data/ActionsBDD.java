@@ -20,9 +20,9 @@ public interface ActionsBDD {
 
     public abstract void printBestSalaryProgrammeur();
 
-    public abstract void printSameResponsableProgrammeur();
+    public abstract void printSameResponsableProgrammeur(String responsable);
 
-    public abstract void printCommonObjectProgrammeur();
+    public abstract void printCommonAgeProgrammeur();
 
     public abstract void diagramAgeOfProgrammeur();
 

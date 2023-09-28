@@ -206,26 +206,181 @@ public class ActionsBDDImpl implements ActionsBDD {
 
     @Override
     public void printBestSalaryProgrammeur() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'printBestSalaryProgrammeur'");
+        try {
+            dataBaseConnection(); // Établir une connexion à la base de données
+    
+            String selectSQL = "SELECT * FROM PROGRAMMEUR ORDER BY SALAIRE DESC LIMIT 1";
+    
+            Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR, Constantes.MOT_DE_PASSE);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(selectSQL);
+    
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String nom = resultSet.getString("NOM");
+                String prenom = resultSet.getString("PRENOM");
+                String adresse = resultSet.getString("ADRESSE");
+                String responsable = resultSet.getString("RESPONSABLE");
+                String hobby = resultSet.getString("HOBBY");
+                int naissance = resultSet.getInt("NAISSANCE");
+                float salaire = resultSet.getFloat("SALAIRE");
+                float prime = resultSet.getFloat("PRIME");
+                String pseudo = resultSet.getString("PSEUDO");
+    
+                System.out.println(
+                    " id: " + id + "\n" +
+                    " Nom: " + nom + "\n" +
+                    " Prénom: " + prenom + "\n" +
+                    " Adresse: " + adresse + "\n" +
+                    " Pseudo: " + pseudo + "\n" +
+                    " Responsable: " + responsable + "\n" +
+                    " Hobby: " + hobby + "\n" +
+                    " Naissance: " + naissance + "\n" +
+                    " Salaire: " + salaire + "\n" +
+                    " Prime: " + prime + "\n"
+                );
+            } else {
+                System.out.println("Aucun programmeur trouvé.");
+            }
+
+            resultSet.close();
+            statement.close();
+            dataBaseConnectionEnd();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void printSameResponsableProgrammeur() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'printSameResponsableProgrammeur'");
+    public void printSameResponsableProgrammeur(String responsable) {
+        try {
+            dataBaseConnection();
+    
+            String selectSQL = "SELECT * FROM PROGRAMMEUR WHERE RESPONSABLE = ?";
+    
+            Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR, Constantes.MOT_DE_PASSE);
+            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setString(1, responsable);
+            ResultSet resultSet = preparedStatement.executeQuery();
+    
+            if (resultSet.next()) {
+                System.out.println("Programmeurs ayant le même responsable " + responsable + ":");
+                do {
+                    int id = resultSet.getInt("id");
+                    String nom = resultSet.getString("NOM");
+                    String prenom = resultSet.getString("PRENOM");    
+                    System.out.println(
+                        " id: " + id + "\n" +
+                        " Nom: " + nom + "\n" +
+                        " Prénom: " + prenom + "\n"
+                    );
+                } while (resultSet.next());
+            } else {
+                System.out.println("Aucun programmeur avec le responsable " + responsable + " trouvé.");
+            }
+    
+            resultSet.close();
+            preparedStatement.close();
+            dataBaseConnectionEnd();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void printCommonObjectProgrammeur() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'printCommonObjectProgrammeur'");
+    public void printCommonAgeProgrammeur() {
+        try {
+            dataBaseConnection(); // Établir une connexion à la base de données
+
+            int anneeActuelle = Constantes.ANNEE_ACTUELLE;
+    
+            // Calculer l'âge des programmeurs en utilisant la différence entre l'année actuelle et l'année de naissance
+            String selectSQL = "SELECT * FROM PROGRAMMEUR WHERE ? - NAISSANCE = 0";
+    
+            Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR, Constantes.MOT_DE_PASSE);
+            PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, anneeActuelle);
+            ResultSet resultSet = preparedStatement.executeQuery();
+    
+            if (resultSet.next()) {
+                System.out.println("Programmeurs ayant l'âge de " + (anneeActuelle - resultSet.getInt("NAISSANCE")) + " ans :");
+                do {
+                    int id = resultSet.getInt("id");
+                    String nom = resultSet.getString("NOM");
+                    String prenom = resultSet.getString("PRENOM");
+    
+                    System.out.println(
+                        " id: " + id + "\n" +
+                        " Nom: " + nom + "\n" +
+                        " Prénom: " + prenom + "\n"
+                    );
+                } while (resultSet.next());
+            } else {
+                System.out.println("Aucun programmeur de " + (anneeActuelle - resultSet.getInt("NAISSANCE")) + " ans trouvé.");
+            }
+            
+            resultSet.close();
+            preparedStatement.close();
+            dataBaseConnectionEnd();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void diagramAgeOfProgrammeur() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'diagramAgeOfProgrammeur'");
+        try {
+            dataBaseConnection(); // Établir une connexion à la base de données
+    
+            // Récupérer l'année actuelle depuis votre classe constante
+            int anneeActuelle = Constantes.ANNEE_ACTUELLE; // Remplacez VotreClasseConstante par le nom réel de votre classe constante
+    
+            // Créer une requête SQL pour sélectionner l'âge de tous les programmeurs
+            String selectSQL = "SELECT NAISSANCE FROM PROGRAMMEUR";
+    
+            Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR, Constantes.MOT_DE_PASSE);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(selectSQL);
+    
+            int countJunior = 0;
+            int countExpert = 0;
+            int countSenior = 0;
+    
+            while (resultSet.next()) {
+                int anneeNaissance = resultSet.getInt("NAISSANCE");
+                int age = anneeActuelle - anneeNaissance;
+    
+                // Classer les programmeurs en fonction de leur âge
+                if (age >= 20 && age < 30) {
+                    countJunior++;
+                } else if (age >= 30 && age < 40) {
+                    countExpert++;
+                } else if (age >= 40 && age <= 50) {
+                    countSenior++;
+                }
+            }
+    
+            // Afficher le diagramme
+            System.out.println("Diagramme d'âge des programmeurs :");
+            System.out.println("Junior (20-29 ans): " + getStars(countJunior));
+            System.out.println("Expert (30-39 ans): " + getStars(countExpert));
+            System.out.println("Senior (40-50 ans): " + getStars(countSenior));
+    
+            // Fermer la connexion
+            resultSet.close();
+            statement.close();
+            dataBaseConnectionEnd();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getStars(int count) {
+        StringBuilder stars = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            stars.append("*");
+        }
+        return stars.toString();
     }
     
     
