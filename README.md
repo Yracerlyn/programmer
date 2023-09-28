@@ -21,3 +21,5 @@ ActionBDDImpl: Classe qui implémente l'interface ActionBDD et permet ainsi d'im
 Les packages lib, .idea et out sont les packages pour assurer le bon fonctionnement du programme qui va de la connexion à la base de donnée MySql ou jdk.
 
 
+
+
