@@ -181,6 +181,8 @@ public class ActionsBDDImpl implements ActionsBDD {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            StringBuilder result = new StringBuilder();
+
             while (resultSet.next()) {
                 id = resultSet.getInt("id");
                 String nom = resultSet.getString("NOM");
@@ -192,7 +194,7 @@ public class ActionsBDDImpl implements ActionsBDD {
                 float salaire = resultSet.getFloat("SALAIRE");
                 float prime = resultSet.getFloat("PRIME");
                 String pseudo = resultSet.getString("PSEUDO");
-                System.out.println(
+                result.append(
                         " id: " + id + "\n" +
                         " Nom: " + nom + "\n" +
                         " Prénom: " + prenom + "\n" +
@@ -220,7 +222,9 @@ public class ActionsBDDImpl implements ActionsBDD {
             Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR, Constantes.MOT_DE_PASSE);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(selectSQL);
-    
+
+            StringBuilder result = new StringBuilder();
+
             if (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String nom = resultSet.getString("NOM");
@@ -232,8 +236,8 @@ public class ActionsBDDImpl implements ActionsBDD {
                 float salaire = resultSet.getFloat("SALAIRE");
                 float prime = resultSet.getFloat("PRIME");
                 String pseudo = resultSet.getString("PSEUDO");
-    
-                System.out.println(
+
+                result.append(
                     " id: " + id + "\n" +
                     " Nom: " + nom + "\n" +
                     " Prénom: " + prenom + "\n" +
@@ -268,14 +272,16 @@ public class ActionsBDDImpl implements ActionsBDD {
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
             preparedStatement.setString(1, responsable);
             ResultSet resultSet = preparedStatement.executeQuery();
+
+            StringBuilder result = new StringBuilder();
     
             if (resultSet.next()) {
                 System.out.println("Programmeurs ayant le même responsable " + responsable + ":");
                 do {
                     int id = resultSet.getInt("id");
                     String nom = resultSet.getString("NOM");
-                    String prenom = resultSet.getString("PRENOM");    
-                    System.out.println(
+                    String prenom = resultSet.getString("PRENOM");
+                    result.append(
                         " id: " + id + "\n" +
                         " Nom: " + nom + "\n" +
                         " Prénom: " + prenom + "\n"
@@ -307,7 +313,9 @@ public class ActionsBDDImpl implements ActionsBDD {
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
             preparedStatement.setInt(1, anneeActuelle);
             ResultSet resultSet = preparedStatement.executeQuery();
-    
+
+            StringBuilder result = new StringBuilder();
+
             if (resultSet.next()) {
                 System.out.println("Programmeurs ayant l'âge de " + (anneeActuelle - resultSet.getInt("NAISSANCE")) + " ans :");
                 do {
@@ -347,6 +355,8 @@ public class ActionsBDDImpl implements ActionsBDD {
             Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR, Constantes.MOT_DE_PASSE);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(selectSQL);
+
+            StringBuilder result = new StringBuilder();
     
             int countJunior = 0;
             int countExpert = 0;
