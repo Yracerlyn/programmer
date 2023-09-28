@@ -128,6 +128,8 @@ public class ActionsBDDImpl implements ActionsBDD {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(selectSQL);
 
+            StringBuilder result = new StringBuilder();
+
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String nom = resultSet.getString("NOM");
@@ -139,7 +141,8 @@ public class ActionsBDDImpl implements ActionsBDD {
                 float salaire = resultSet.getFloat("SALAIRE");
                 float prime = resultSet.getFloat("PRIME");
                 String pseudo = resultSet.getString("PSEUDO");
-                System.out.println(
+
+                result.append(
                         " id: " + id + "\n" +
                         " Nom: " + nom + "\n" +
                         " Prénom: " + prenom + "\n" +
@@ -157,10 +160,12 @@ public class ActionsBDDImpl implements ActionsBDD {
             resultSet.close();
             statement.close();
             dataBaseConnectionEnd();
+
+            return result.toString(); // Renvoie les résultats sous forme de chaîne de caractères
         } catch (SQLException e) {
             e.printStackTrace();
+            return "Erreur lors de la récupération des données.";
         }
-        return null;
     }
 
     @Override
