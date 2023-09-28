@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 
 public class Gui extends JFrame {
 
+
+    private JTextArea resultTextArea;
     public Gui(){
 
         setTitle("Gestion des Utilisateurs");
@@ -19,10 +21,15 @@ public class Gui extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(7, 1));
 
-        JTextArea resultTextArea = new JTextArea();
+        /*JTextArea resultTextArea = new JTextArea();
         resultTextArea.setEditable(false); // Empêche l'édition du texte
         JScrollPane scrollPane = new JScrollPane(resultTextArea);
-        panel.add(scrollPane, BorderLayout.CENTER);
+        panel.add(scrollPane, BorderLayout.CENTER);*/
+
+        resultTextArea = new JTextArea(20, 40);
+        JScrollPane scrollPane = new JScrollPane(resultTextArea);
+        panel.add(scrollPane); // Ajoutez la zone de texte à votre interface utilisateur
+
 
         JButton btnAfficherTous = new JButton("Afficher tous les programmes");
         JButton btnAfficherUn = new JButton("Afficher un programmeur");
@@ -72,11 +79,10 @@ public class Gui extends JFrame {
         btnAfficherTous.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String result = actionsBDD.printAllProgrammeur(); // Appel de la méthode modifiée pour obtenir les résultats
-                JTextArea textArea = new JTextArea(result);
-                JScrollPane scrollPane = new JScrollPane(textArea);
-                JOptionPane.showMessageDialog(Gui.this, scrollPane, "Afficher tous les programmes", JOptionPane.PLAIN_MESSAGE);
+                resultTextArea.setText(result); // Met à jour le JTextArea avec les résultats
             }
         });
+
 
 
         btnAfficherUn.addActionListener(new ActionListener() {
