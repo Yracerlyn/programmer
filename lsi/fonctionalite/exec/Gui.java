@@ -61,12 +61,23 @@ public class Gui extends JFrame {
 
         ActionsBDD actionsBDD = new ActionsBDDImpl(); // Instanciez la classe ActionsBDDImpl
 
-        btnAfficherTous.addActionListener(new ActionListener() {
+        /*btnAfficherTous.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String resultat = actionsBDD.printAllProgrammeur(); // Appelez la méthode correspondante
                 afficherResultat(resultat);
             }
+        });*/
+
+
+        btnAfficherTous.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String result = actionsBDD.printAllProgrammeur(); // Appel de la méthode modifiée pour obtenir les résultats
+                JTextArea textArea = new JTextArea(result);
+                JScrollPane scrollPane = new JScrollPane(textArea);
+                JOptionPane.showMessageDialog(Gui.this, scrollPane, "Afficher tous les programmes", JOptionPane.PLAIN_MESSAGE);
+            }
         });
+
 
         btnAfficherUn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
