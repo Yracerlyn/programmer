@@ -72,20 +72,20 @@ public class Gui extends JFrame {
 
         ActionsBDD actionsBDD = new ActionsBDDImpl(); // Instanciez la classe ActionsBDDImpl
 
-        /*btnAfficherTous.addActionListener(new ActionListener() {
+        btnAfficherTous.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String resultat = actionsBDD.printAllProgrammeur(); // Appelez la méthode correspondante
                 afficherResultat(resultat);
             }
-        });*/
+        });
 
 
-        btnAfficherTous.addActionListener(new ActionListener() {
+        /*btnAfficherTous.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String result = actionsBDD.printAllProgrammeur(); // Appel de la méthode modifiée pour obtenir les résultats
                 resultTextArea.setText(result); // Met à jour le JTextArea avec les résultats
             }
-        });
+        });*/
 
 
 
