@@ -83,9 +83,9 @@ public class Gui extends JFrame {
                         String resultat = actionsBDD.printProgrammeur(idProgrammeur);
 
                         // Affichez les informations dans la zone de texte
-                        JOptionPane.showMessageDialog(Gui.this, resultat, "Détails du Programmeur", JOptionPane.INFORMATION_MESSAGE);
+                        //JOptionPane.showMessageDialog(Gui.this, resultat, "Détails du Programmeur", JOptionPane.INFORMATION_MESSAGE);
 
-
+                        afficherResultat(resultat);
                         //resultTextArea.setText(resultat);
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(Gui.this, "L'ID doit être un nombre entier.", "Erreur", JOptionPane.ERROR_MESSAGE);
