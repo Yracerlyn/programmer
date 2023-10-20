@@ -121,7 +121,7 @@ public class ActionsBDDImpl implements ActionsBDD {
     }
 
     @Override
-    public void printAllProgrammeur() {
+    public String printAllProgrammeur() {
         try {
             dataBaseConnection(); // Établir une connexion à la base de données
 
@@ -131,6 +131,8 @@ public class ActionsBDDImpl implements ActionsBDD {
             Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR, Constantes.MOT_DE_PASSE);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(selectSQL);
+
+            StringBuilder result = new StringBuilder();
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
@@ -143,7 +145,8 @@ public class ActionsBDDImpl implements ActionsBDD {
                 float salaire = resultSet.getFloat("SALAIRE");
                 float prime = resultSet.getFloat("PRIME");
                 String pseudo = resultSet.getString("PSEUDO");
-                System.out.println(
+
+                result.append(
                         " id: " + id + "\n" +
                         " Nom: " + nom + "\n" +
                         " Prénom: " + prenom + "\n" +
@@ -161,13 +164,18 @@ public class ActionsBDDImpl implements ActionsBDD {
             resultSet.close();
             statement.close();
             dataBaseConnectionEnd();
+
+            return result.toString(); // Renvoie les résultats sous forme de chaîne de caractères
         } catch (SQLException e) {
             e.printStackTrace();
+            return "Erreur lors de la récupération des données.";
         }
     }
 
     @Override
-    public void printProgrammeur(int id) {
+    public String printProgrammeur(int id) {
+        StringBuilder result = new StringBuilder();
+
         try {
             dataBaseConnection(); // Établir une connexion à la base de données
 
@@ -190,7 +198,7 @@ public class ActionsBDDImpl implements ActionsBDD {
                 float salaire = resultSet.getFloat("SALAIRE");
                 float prime = resultSet.getFloat("PRIME");
                 String pseudo = resultSet.getString("PSEUDO");
-                System.out.println(
+                result.append(
                         " id: " + id + "\n" +
                         " Nom: " + nom + "\n" +
                         " Prénom: " + prenom + "\n" +
@@ -206,6 +214,7 @@ public class ActionsBDDImpl implements ActionsBDD {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return result.toString();
     }
 
     @Override
@@ -218,7 +227,9 @@ public class ActionsBDDImpl implements ActionsBDD {
             Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR, Constantes.MOT_DE_PASSE);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(selectSQL);
-    
+
+            StringBuilder result = new StringBuilder();
+
             if (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String nom = resultSet.getString("NOM");
@@ -230,8 +241,8 @@ public class ActionsBDDImpl implements ActionsBDD {
                 float salaire = resultSet.getFloat("SALAIRE");
                 float prime = resultSet.getFloat("PRIME");
                 String pseudo = resultSet.getString("PSEUDO");
-    
-                System.out.println(
+
+                result.append(
                     " id: " + id + "\n" +
                     " Nom: " + nom + "\n" +
                     " Prénom: " + prenom + "\n" +
@@ -266,14 +277,16 @@ public class ActionsBDDImpl implements ActionsBDD {
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
             preparedStatement.setString(1, responsable);
             ResultSet resultSet = preparedStatement.executeQuery();
+
+            StringBuilder result = new StringBuilder();
     
             if (resultSet.next()) {
                 System.out.println("Programmeurs ayant le même responsable " + responsable + ":");
                 do {
                     int id = resultSet.getInt("id");
                     String nom = resultSet.getString("NOM");
-                    String prenom = resultSet.getString("PRENOM");    
-                    System.out.println(
+                    String prenom = resultSet.getString("PRENOM");
+                    result.append(
                         " id: " + id + "\n" +
                         " Nom: " + nom + "\n" +
                         " Prénom: " + prenom + "\n"
@@ -304,6 +317,25 @@ public class ActionsBDDImpl implements ActionsBDD {
             Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR, Constantes.MOT_DE_PASSE);
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
             ResultSet resultSet = preparedStatement.executeQuery();
+
+            StringBuilder result = new StringBuilder();
+
+            if (resultSet.next()) {
+                System.out.println("Programmeurs ayant l'âge de " + (anneeActuelle - resultSet.getInt("NAISSANCE")) + " ans :");
+                do {
+                    int id = resultSet.getInt("id");
+                    String nom = resultSet.getString("NOM");
+                    String prenom = resultSet.getString("PRENOM");
+    
+                    System.out.println(
+                        " id: " + id + "\n" +
+                        " Nom: " + nom + "\n" +
+                        " Prénom: " + prenom + "\n"
+                    );
+                } while (resultSet.next());
+            } else {
+                System.out.println("Aucun programmeur de " + (anneeActuelle - resultSet.getInt("NAISSANCE")) + " ans trouvé.");
+            }
             
             Map<String, List<String>> hobbiesByType = new HashMap<>();
     
@@ -349,6 +381,8 @@ public class ActionsBDDImpl implements ActionsBDD {
             Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR, Constantes.MOT_DE_PASSE);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(selectSQL);
+
+            StringBuilder result = new StringBuilder();
     
             int countJunior = 0;
             int countExpert = 0;

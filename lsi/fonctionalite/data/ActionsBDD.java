@@ -14,9 +14,9 @@ public interface ActionsBDD {
 
     public abstract void modifySalaire(int id, float newSalaire);
 
-    public abstract void printAllProgrammeur();
+    public abstract String printAllProgrammeur();
 
-    public abstract void printProgrammeur(int id);
+    public abstract String printProgrammeur(int id);
 
     public abstract void printBestSalaryProgrammeur();
 

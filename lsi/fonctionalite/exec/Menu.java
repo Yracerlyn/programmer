@@ -122,6 +122,7 @@ public class Menu {
                         break;
                     case 7:
                         exitRequested = true;
+                        exitMenu6 = true;
                         System.out.println("Vous avez quitté le programme.");
                         break;
                 }
