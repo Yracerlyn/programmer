@@ -26,4 +26,10 @@ public interface ActionsBDD {
 
     public abstract void diagramAgeOfProgrammeur();
 
+    public abstract int nombreTotalProgrammeur();
+
+    public abstract float totalSalaire();
+
+    public abstract int ageMoyenneProgrammeur();
+
 }

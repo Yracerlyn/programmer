@@ -31,7 +31,9 @@ public class Menu {
 
     public void selectMenu() {
         boolean exitRequested = false;
-
+        System.out.println(actionsBDD.nombreTotalProgrammeur());
+        System.out.println(actionsBDD.totalSalaire());
+        System.out.println(actionsBDD.ageMoyenneProgrammeur());
         do {
             printMenu();
             Scanner scanner = new Scanner(System.in);
