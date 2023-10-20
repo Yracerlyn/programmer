@@ -61,23 +61,23 @@ public class Gui extends JFrame {
         JScrollPane scrollPane = new JScrollPane(resultTextArea);
         panel.add(scrollPane, BorderLayout.CENTER);*/
 
-        /*btnAfficherTous.addActionListener(new ActionListener() {
+        btnAfficherTous.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ActionsBDDImpl actionsBDD = new ActionsBDDImpl();
                 String resultat = actionsBDD.printAllProgrammeur();
                 afficherResultat(resultat);
             }
-        });*/
+        });
 
 
         ActionsBDD actionsBDD = new ActionsBDDImpl(); // Instanciez la classe ActionsBDDImpl
 
-        btnAfficherTous.addActionListener(new ActionListener() {
+        /*btnAfficherTous.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String resultat = actionsBDD.printAllProgrammeur(); // Appelez la méthode correspondante
                 afficherResultat(resultat);
             }
-        });
+        });*/
 
 
         /*btnAfficherTous.addActionListener(new ActionListener() {
