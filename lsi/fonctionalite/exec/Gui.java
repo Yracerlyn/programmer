@@ -2,6 +2,7 @@ package lsi.fonctionalite.exec;
 
 import lsi.fonctionalite.data.ActionsBDD;
 import lsi.fonctionalite.data.ActionsBDDImpl;
+import lsi.fonctionalite.utils.Programmeur;
 
 import javax.swing.*;
 import java.awt.*;
@@ -121,15 +122,94 @@ public class Gui extends JFrame {
 
         btnAjouter.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(Gui.this, "Ajouter un programmeur");
+                // Créez une boîte de dialogue pour saisir les informations du programmeur
+                JTextField nomField = new JTextField(10);
+                JTextField prenomField = new JTextField(10);
+                JTextField adresseField = new JTextField(10);
+                JTextField responsableField = new JTextField(10);
+                JTextField hobbyField = new JTextField(10);
+                JTextField naissanceField = new JTextField(10);
+                JTextField salaireField = new JTextField(10);
+                JTextField primeField = new JTextField(10);
+                JTextField pseudoField = new JTextField(10);
+
+                JPanel myPanel = new JPanel();
+                myPanel.setLayout(new GridLayout(9, 2));
+                myPanel.add(new JLabel("Nom:"));
+                myPanel.add(nomField);
+                myPanel.add(new JLabel("Prénom:"));
+                myPanel.add(prenomField);
+                myPanel.add(new JLabel("Adresse:"));
+                myPanel.add(adresseField);
+                myPanel.add(new JLabel("Responsable:"));
+                myPanel.add(responsableField);
+                myPanel.add(new JLabel("Hobby:"));
+                myPanel.add(hobbyField);
+                myPanel.add(new JLabel("Date de naissance:"));
+                myPanel.add(naissanceField);
+                myPanel.add(new JLabel("Salaire:"));
+                myPanel.add(salaireField);
+                myPanel.add(new JLabel("Prime:"));
+                myPanel.add(primeField);
+                myPanel.add(new JLabel("Pseudo:"));
+                myPanel.add(pseudoField);
+
+                int result = JOptionPane.showConfirmDialog(Gui.this, myPanel, "Entrez les informations du programmeur", JOptionPane.OK_CANCEL_OPTION);
+
+                if (result == JOptionPane.OK_OPTION) {
+                    // Récupérez les valeurs saisies par l'utilisateur
+                    String nom = nomField.getText();
+                    String prenom = prenomField.getText();
+                    int naissance = Integer.parseInt(naissanceField.getText());
+                    String adresse = adresseField.getText();
+                    String pseudo = pseudoField.getText();
+                    String responsable = responsableField.getText();
+                    String hobby = hobbyField.getText();
+                    float salaire = Float.parseFloat(salaireField.getText());
+                    float prime = Float.parseFloat(primeField.getText());
+
+                    // Appelez la méthode d'ajout de programmeur
+                    ActionsBDDImpl actionsBDD = new ActionsBDDImpl();
+                    Programmeur nouveauProgrammeur = new Programmeur(nom, prenom, naissance, adresse, pseudo, responsable, hobby, salaire, prime);
+                    actionsBDD.addProgrammeur(nouveauProgrammeur);
+
+                    // Affichez un message pour informer l'utilisateur
+                    JOptionPane.showMessageDialog(Gui.this, "Le programmeur a été ajouté avec succès.");
+                }
             }
         });
 
+
         btnModifierSalaire.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(Gui.this, "Modifier le salaire");
+                // Demandez à l'utilisateur de saisir l'ID du programmeur et le nouveau salaire
+                JTextField idProgrammeurField = new JTextField(10);
+                JTextField nouveauSalaireField = new JTextField(10);
+
+                JPanel myPanel = new JPanel();
+                myPanel.setLayout(new GridLayout(2, 2));
+                myPanel.add(new JLabel("ID du programmeur:"));
+                myPanel.add(idProgrammeurField);
+                myPanel.add(new JLabel("Nouveau salaire:"));
+                myPanel.add(nouveauSalaireField);
+
+                int result = JOptionPane.showConfirmDialog(Gui.this, myPanel, "Modifier le salaire du programmeur", JOptionPane.OK_CANCEL_OPTION);
+
+                if (result == JOptionPane.OK_OPTION) {
+                    // Récupérez l'ID du programmeur et le nouveau salaire saisis par l'utilisateur
+                    int idProgrammeur = Integer.parseInt(idProgrammeurField.getText());
+                    float nouveauSalaire = Float.parseFloat(nouveauSalaireField.getText());
+
+                    // Appelez la méthode de modification de salaire
+                    ActionsBDDImpl actionsBDD = new ActionsBDDImpl();
+                    actionsBDD.modifySalaire(idProgrammeur, nouveauSalaire);
+
+                    // Affichez un message pour informer l'utilisateur
+                    JOptionPane.showMessageDialog(Gui.this, "Le salaire du programmeur a été modifié avec succès.");
+                }
             }
         });
+
 
         btnAutres.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
