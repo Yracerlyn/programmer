@@ -307,23 +307,26 @@ public class ActionsBDDImpl implements ActionsBDD {
             
             Map<String, List<String>> hobbiesByType = new HashMap<>();
     
-            if (resultSet.next()) {
-                System.out.println("Voici les hobby de nos programmeurs");
-                while(resultSet.next()) {
-                    String nom = resultSet.getString("NOM");
-                    String prenom = resultSet.getString("PRENOM");
-                    String hobby = resultSet.getString("HOBBY");
-
-                    // Ajouter le hobby à la liste correspondante dans la Map
-                    hobbiesByType.computeIfAbsent(hobby, k -> new ArrayList<>()).add(nom + " " + prenom);
-                    
-                }
-                
-
-            } else {
-                System.out.println("Aucun résultat trouver.");
+            while (resultSet.next()) {
+                String nom = resultSet.getString("NOM");
+                String prenom = resultSet.getString("PRENOM");
+                String hobby = resultSet.getString("HOBBY");
+    
+                // Ajouter le hobby à la liste correspondante dans la Map
+                hobbiesByType.computeIfAbsent(hobby, k -> new ArrayList<>()).add(nom + " " + prenom);
             }
-            
+    
+            if (!hobbiesByType.isEmpty()) {
+                System.out.println("Hobbies des programmeurs par type :");
+                for (Map.Entry<String, List<String>> entry : hobbiesByType.entrySet()) {
+                    String hobbyType = entry.getKey();
+                    List<String> programmers = entry.getValue();
+    
+                    System.out.println(hobbyType + ": " + String.join(", ", programmers));
+                }
+            } else {
+                System.out.println("Aucun résultat trouvé.");
+            }            
             resultSet.close();
             preparedStatement.close();
             dataBaseConnectionEnd();
