@@ -28,7 +28,8 @@ Il propose plusieurs options:
 - Supprimer un programmeur
 - Ajouter un programmeur (l'utilisateur doit donner le nom, prénom, adresse, hobby, pseudo, responsable, salaire, prime, années de naissance)
 - une option autre qui permet d'accéder à une sous section du Menu:
-    . 
-    .
-    .
-- Quitter le programme
+    . Afficher le programmeur qui a le meilleur salaire
+    . Afficher les programmeurs qui ont le même responsable 
+    . Liste des activités des activités des programmeurs
+    . Retour au menu principale.
+- Quitter le programme.
