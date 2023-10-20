@@ -26,4 +26,9 @@ Il propose plusieurs options:
 - Afficher tous les programmeurs dans la base de données
 - Afficher un programmeur (l'utilisateur renseigne l'id du programmer qu'il recherche)
 - Supprimer un programmeur
-- Ajouter un programmeur ()
+- Ajouter un programmeur (l'utilisateur doit donner le nom, prénom, adresse, hobby, pseudo, responsable, salaire, prime, années de naissance)
+- une option autre qui permet d'accéder à une sous section du Menu:
+    . 
+    .
+    .
+- Quitter le programme
