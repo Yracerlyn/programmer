@@ -24,16 +24,6 @@ public class Gui extends JFrame {
         JPanel panel1 = new JPanel();
 
 
-        /*JTextArea resultTextArea = new JTextArea();
-        resultTextArea.setEditable(false); // Empêche l'édition du texte
-        JScrollPane scrollPane = new JScrollPane(resultTextArea);
-        panel.add(scrollPane, BorderLayout.CENTER);*/
-
-        /*resultTextArea = new JTextArea(20, 40);
-        JScrollPane scrollPane = new JScrollPane(resultTextArea);
-        panel1.add(scrollPane);*/ // Ajoutez la zone de texte à votre interface utilisateur
-
-
         JButton btnAfficherTous = new JButton("Afficher tous les programmes");
         JButton btnAfficherUn = new JButton("Afficher un programmeur");
         JButton btnSupprimer = new JButton("Supprimer un programmeur");
@@ -54,9 +44,9 @@ public class Gui extends JFrame {
         panel.add(btnPanel, BorderLayout.WEST);
 
         add(panel);
-    
 
-        JTextArea resultTextArea = new JTextArea();
+
+        resultTextArea = new JTextArea();
         resultTextArea.setEditable(false); // Empêche l'édition du texte
         JScrollPane scrollPane = new JScrollPane(resultTextArea);
         panel.add(scrollPane, BorderLayout.CENTER);
@@ -69,24 +59,7 @@ public class Gui extends JFrame {
             }
         });
 
-
         ActionsBDD actionsBDD = new ActionsBDDImpl(); // Instanciez la classe ActionsBDDImpl
-
-        /*btnAfficherTous.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String resultat = actionsBDD.printAllProgrammeur(); // Appelez la méthode correspondante
-                afficherResultat(resultat);
-            }
-        });*/
-
-
-        /*btnAfficherTous.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String result = actionsBDD.printAllProgrammeur(); // Appel de la méthode modifiée pour obtenir les résultats
-                resultTextArea.setText(result); // Met à jour le JTextArea avec les résultats
-            }
-        });*/
-
 
 
         btnAfficherUn.addActionListener(new ActionListener() {
@@ -126,8 +99,7 @@ public class Gui extends JFrame {
         });
 
     }
-    public void afficherResultat(String resultat) {
-        Label resultTextArea = new Label();
+    private void afficherResultat(String resultat) {
         resultTextArea.setText(resultat);
     }
 
