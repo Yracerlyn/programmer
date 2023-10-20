@@ -1,4 +1,4 @@
-package lsi.fonctionalite.exec;
+/* package lsi.fonctionalite.exec;
 
 import javax.swing.SwingUtilities;
 
@@ -25,3 +25,4 @@ public class Start {
 
 }
 
+ */
