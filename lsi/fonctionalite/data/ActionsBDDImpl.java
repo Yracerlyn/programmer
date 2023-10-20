@@ -295,7 +295,7 @@ public class ActionsBDDImpl implements ActionsBDD {
             int anneeActuelle = Constantes.ANNEE_ACTUELLE;
     
             // Calculer l'âge des programmeurs en utilisant la différence entre l'année actuelle et l'année de naissance
-            String selectSQL = "SELECT HOBBY FROM PROGRAMMEUR";
+            String selectSQL = "SELECT DISTINCT HOBBY FROM PROGRAMMEUR";
     
             Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR, Constantes.MOT_DE_PASSE);
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
@@ -305,11 +305,14 @@ public class ActionsBDDImpl implements ActionsBDD {
             if (resultSet.next()) {
                 System.out.println("Voici les hobby de nos programmeurs");
                 do {
-                    System.out.println(resultSet.getString(selectSQL));
+                    String nom = resultSet.getString("NOM");
+                    String prenom = resultSet.getString("PRENOM");
+                    String hobby = resultSet.getString("HOBBY");
+                    System.out.println(nom + " " + prenom + " : " + hobby);
                     
                 } while (resultSet.next());
             } else {
-                System.out.println("");
+                System.out.println("Aucun résultat trouver.");
             }
             
             resultSet.close();
