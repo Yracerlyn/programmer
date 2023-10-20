@@ -20,4 +20,10 @@ ActionBDDImpl: Classe qui implémente l'interface ActionBDD et permet ainsi d'im
 # package supplémentaire:
 Les packages lib, .idea et out sont les packages pour assurer le bon fonctionnement du programme qui va de la connexion à la base de donnée MySql ou jdk.
 
-
+# Fonctionnalité:
+Au lancement du programme le menu est affiché à l'utilisateur. 
+Il propose plusieurs options:
+- Afficher tous les programmeurs dans la base de données
+- Afficher un programmeur (l'utilisateur renseigne l'id du programmer qu'il recherche)
+- Supprimer un programmeur
+- Ajouter un programmeur ()
