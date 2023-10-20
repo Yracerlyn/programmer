@@ -29,9 +29,9 @@ public class Gui extends JFrame {
         JScrollPane scrollPane = new JScrollPane(resultTextArea);
         panel.add(scrollPane, BorderLayout.CENTER);*/
 
-        resultTextArea = new JTextArea(20, 40);
+        /*resultTextArea = new JTextArea(20, 40);
         JScrollPane scrollPane = new JScrollPane(resultTextArea);
-        panel1.add(scrollPane); // Ajoutez la zone de texte à votre interface utilisateur
+        panel1.add(scrollPane);*/ // Ajoutez la zone de texte à votre interface utilisateur
 
 
         JButton btnAfficherTous = new JButton("Afficher tous les programmes");
@@ -56,10 +56,10 @@ public class Gui extends JFrame {
         add(panel);
     
 
-        /*JTextArea resultTextArea = new JTextArea();
+        JTextArea resultTextArea = new JTextArea();
         resultTextArea.setEditable(false); // Empêche l'édition du texte
         JScrollPane scrollPane = new JScrollPane(resultTextArea);
-        panel.add(scrollPane, BorderLayout.CENTER);*/
+        panel.add(scrollPane, BorderLayout.CENTER);
 
         btnAfficherTous.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
