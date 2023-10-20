@@ -69,7 +69,25 @@ public class Gui extends JFrame {
 
         btnAfficherUn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(Gui.this, "Afficher un programmeur");
+                // Demandez à l'utilisateur de saisir l'ID du programmeur
+                String idProgrammeurStr = JOptionPane.showInputDialog(Gui.this, "Veuillez entrer l'ID du programmeur :");
+
+                // Vérifiez si l'utilisateur a annulé la saisie
+                if (idProgrammeurStr != null && !idProgrammeurStr.isEmpty()) {
+                    try {
+                        // Convertissez l'ID en entier
+                        int idProgrammeur = Integer.parseInt(idProgrammeurStr);
+
+                        // Appelez la méthode pour afficher les détails du programmeur
+                        ActionsBDDImpl actionsBDD = new ActionsBDDImpl();
+                        String resultat = actionsBDD.printProgrammeur(idProgrammeur);
+
+                        // Affichez les informations dans la zone de texte
+                        resultTextArea.setText(resultat);
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(Gui.this, "L'ID doit être un nombre entier.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
             }
         });
 
