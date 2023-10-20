@@ -96,9 +96,28 @@ public class Gui extends JFrame {
 
         btnSupprimer.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(Gui.this, "Supprimer un programmeur");
+                // Demandez à l'utilisateur de saisir l'ID du programmeur à supprimer
+                String idProgrammeurStr = JOptionPane.showInputDialog(Gui.this, "Veuillez entrer l'ID du programmeur à supprimer :");
+
+                // Vérifiez si l'utilisateur a annulé la saisie
+                if (idProgrammeurStr != null && !idProgrammeurStr.isEmpty()) {
+                    try {
+                        // Convertissez l'ID en entier
+                        int idProgrammeur = Integer.parseInt(idProgrammeurStr);
+
+                        // Appelez la méthode de suppression du programmeur
+                        ActionsBDDImpl actionsBDD = new ActionsBDDImpl();
+                        actionsBDD.deleteProgrammeur(idProgrammeur);
+
+                        // Affichez un message pour informer l'utilisateur
+                        JOptionPane.showMessageDialog(Gui.this, "Le programmeur avec l'ID " + idProgrammeur + " a été supprimé.");
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(Gui.this, "L'ID doit être un nombre entier.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
             }
         });
+
 
         btnAjouter.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
