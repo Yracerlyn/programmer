@@ -145,7 +145,7 @@ public class Gui extends JFrame {
                 myPanel.add(responsableField);
                 myPanel.add(new JLabel("Hobby:"));
                 myPanel.add(hobbyField);
-                myPanel.add(new JLabel("Date de naissance:"));
+                myPanel.add(new JLabel("Année de naissance:"));
                 myPanel.add(naissanceField);
                 myPanel.add(new JLabel("Salaire:"));
                 myPanel.add(salaireField);
@@ -224,6 +224,13 @@ public class Gui extends JFrame {
         });
 
     }
+
+    public static void showMenuContent() {
+    }
+
+    public static void showDashboardContent() {
+    }
+
     private void afficherResultat(String resultat) {
         resultTextArea.setText(resultat);
     }
