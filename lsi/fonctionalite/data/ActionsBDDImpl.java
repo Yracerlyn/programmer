@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import lsi.fonctionalite.utils.Constantes;
 import lsi.fonctionalite.utils.Programmeur;
@@ -295,12 +298,13 @@ public class ActionsBDDImpl implements ActionsBDD {
             int anneeActuelle = Constantes.ANNEE_ACTUELLE;
     
             // Calculer l'âge des programmeurs en utilisant la différence entre l'année actuelle et l'année de naissance
-            String selectSQL = "SELECT DISTINCT HOBBY FROM PROGRAMMEUR";
+            String selectSQL = "SELECT NOM, PRENOM, HOBBY FROM PROGRAMMEUR";
     
             Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR, Constantes.MOT_DE_PASSE);
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, anneeActuelle);
             ResultSet resultSet = preparedStatement.executeQuery();
+            
+            Map<String, List<String>> hobbiesByType = new HashMap<>();
     
             if (resultSet.next()) {
                 System.out.println("Voici les hobby de nos programmeurs");
