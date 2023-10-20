@@ -170,6 +170,8 @@ public class ActionsBDDImpl implements ActionsBDD {
 
     @Override
     public String printProgrammeur(int id) {
+        StringBuilder result = new StringBuilder();
+
         try {
             dataBaseConnection(); // Établir une connexion à la base de données
 
@@ -180,8 +182,6 @@ public class ActionsBDDImpl implements ActionsBDD {
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-
-            StringBuilder result = new StringBuilder();
 
             while (resultSet.next()) {
                 id = resultSet.getInt("id");
@@ -210,7 +210,8 @@ public class ActionsBDDImpl implements ActionsBDD {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return result.toString();
+
     }
 
     @Override
