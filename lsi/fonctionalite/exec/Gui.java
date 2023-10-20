@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 
 public class Gui extends JFrame {
 
-
     private JTextArea resultTextArea;
     public Gui(){
 
@@ -18,11 +17,11 @@ public class Gui extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 200);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(7, 1));
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 
-        JPanel panel1 = new JPanel();
-
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 
         JButton btnAfficherTous = new JButton("Afficher tous les programmes");
         JButton btnAfficherUn = new JButton("Afficher un programmeur");
@@ -32,24 +31,30 @@ public class Gui extends JFrame {
         JButton btnAutres = new JButton("Autres");
         JButton btnQuitter = new JButton("Quitter le programme");
 
-        JPanel btnPanel = new JPanel();
-        btnPanel.setLayout(new GridLayout(7, 1));
-        btnPanel.add(btnAfficherTous);
-        btnPanel.add(btnAfficherUn);
-        btnPanel.add(btnSupprimer);
-        btnPanel.add(btnAjouter);
-        btnPanel.add(btnModifierSalaire);
-        btnPanel.add(btnAutres);
-        btnPanel.add(btnQuitter);
-        panel.add(btnPanel, BorderLayout.WEST);
+        buttonPanel.add(btnAfficherTous);
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espace vertical
+        buttonPanel.add(btnAfficherUn);
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        buttonPanel.add(btnSupprimer);
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        buttonPanel.add(btnAjouter);
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        buttonPanel.add(btnModifierSalaire);
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        buttonPanel.add(btnAutres);
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        buttonPanel.add(btnQuitter);
 
-        add(panel);
+        JScrollPane scrollPane = new JScrollPane();
+        resultTextArea = new JTextArea(10, 40);
+        resultTextArea.setEditable(false);
+        scrollPane.setViewportView(resultTextArea);
 
+        mainPanel.add(buttonPanel);
+        mainPanel.add(Box.createRigidArea(new Dimension(10, 0))); // Espace horizontal
+        mainPanel.add(scrollPane);
 
-        resultTextArea = new JTextArea();
-        resultTextArea.setEditable(false); // Empêche l'édition du texte
-        JScrollPane scrollPane = new JScrollPane(resultTextArea);
-        panel.add(scrollPane, BorderLayout.CENTER);
+        add(mainPanel);
 
         btnAfficherTous.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
