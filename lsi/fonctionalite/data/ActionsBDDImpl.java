@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -308,13 +309,17 @@ public class ActionsBDDImpl implements ActionsBDD {
     
             if (resultSet.next()) {
                 System.out.println("Voici les hobby de nos programmeurs");
-                do {
+                while(resultSet.next()) {
                     String nom = resultSet.getString("NOM");
                     String prenom = resultSet.getString("PRENOM");
                     String hobby = resultSet.getString("HOBBY");
-                    System.out.println(nom + " " + prenom + " : " + hobby);
+
+                    // Ajouter le hobby à la liste correspondante dans la Map
+                    hobbiesByType.computeIfAbsent(hobby, k -> new ArrayList<>()).add(nom + " " + prenom);
                     
-                } while (resultSet.next());
+                }
+                
+
             } else {
                 System.out.println("Aucun résultat trouver.");
             }
