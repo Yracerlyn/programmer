@@ -288,14 +288,14 @@ public class ActionsBDDImpl implements ActionsBDD {
     }
 
     @Override
-    public void printCommonAgeProgrammeur() {
+    public void printPorgrammerWithSameHobby() {
         try {
             dataBaseConnection(); // Établir une connexion à la base de données
 
             int anneeActuelle = Constantes.ANNEE_ACTUELLE;
     
             // Calculer l'âge des programmeurs en utilisant la différence entre l'année actuelle et l'année de naissance
-            String selectSQL = "SELECT * FROM PROGRAMMEUR WHERE ? - NAISSANCE = 0";
+            String selectSQL = "SELECT HOBBY FROM PROGRAMMEUR";
     
             Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR, Constantes.MOT_DE_PASSE);
             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
@@ -303,7 +303,7 @@ public class ActionsBDDImpl implements ActionsBDD {
             ResultSet resultSet = preparedStatement.executeQuery();
     
             if (resultSet.next()) {
-                System.out.println("Programmeurs ayant l'âge de " + (anneeActuelle - resultSet.getInt("NAISSANCE")) + " ans :");
+                System.out.println("Voici les hobby de nos programmeurs");
                 do {
                     int id = resultSet.getInt("id");
                     String nom = resultSet.getString("NOM");

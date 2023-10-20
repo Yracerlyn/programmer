@@ -22,7 +22,7 @@ public interface ActionsBDD {
 
     public abstract void printSameResponsableProgrammeur(String responsable);
 
-    public abstract void printCommonAgeProgrammeur();
+    public abstract void printPorgrammerWithSameHobby();
 
     public abstract void diagramAgeOfProgrammeur();
 

@@ -106,7 +106,7 @@ public class Menu {
                                         actionsBDD.printSameResponsableProgrammeur(responsableChoix);
                                         break;
                                     case 3:
-                                        actionsBDD.printCommonAgeProgrammeur();
+                                        actionsBDD.printPorgrammerWithSameHobby();
                                         break;
                                     case 4:
                                         actionsBDD.diagramAgeOfProgrammeur();
