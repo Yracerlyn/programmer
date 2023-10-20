@@ -211,7 +211,6 @@ public class ActionsBDDImpl implements ActionsBDD {
             e.printStackTrace();
         }
         return result.toString();
-
     }
 
     @Override
