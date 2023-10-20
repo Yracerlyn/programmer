@@ -305,18 +305,11 @@ public class ActionsBDDImpl implements ActionsBDD {
             if (resultSet.next()) {
                 System.out.println("Voici les hobby de nos programmeurs");
                 do {
-                    int id = resultSet.getInt("id");
-                    String nom = resultSet.getString("NOM");
-                    String prenom = resultSet.getString("PRENOM");
-    
-                    System.out.println(
-                        " id: " + id + "\n" +
-                        " Nom: " + nom + "\n" +
-                        " Prénom: " + prenom + "\n"
-                    );
+                    System.out.println(resultSet.getString(selectSQL));
+                    
                 } while (resultSet.next());
             } else {
-                System.out.println("Aucun programmeur de " + (anneeActuelle - resultSet.getInt("NAISSANCE")) + " ans trouvé.");
+                System.out.println("");
             }
             
             resultSet.close();

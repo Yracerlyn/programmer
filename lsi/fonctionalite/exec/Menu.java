@@ -134,7 +134,7 @@ public class Menu {
     private void autreFonction() {
         System.out.println("1. Qui est le programmeur le mieux payé");
         System.out.println("2. Qui sont les programmeur qui ont le même responsable");
-        System.out.println("3. Element en commun");
+        System.out.println("3. Liste des activitées des programmeurs");
         System.out.println("4. Diagramme moyenne d'âge des programmeurs");
         System.out.println("5. Retour");
     }
