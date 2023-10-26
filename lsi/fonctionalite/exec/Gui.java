@@ -1,6 +1,5 @@
 package lsi.fonctionalite.exec;
 
-import lsi.fonctionalite.data.ActionsBDD;
 import lsi.fonctionalite.data.ActionsBDDImpl;
 import lsi.fonctionalite.utils.Programmeur;
 
@@ -8,17 +7,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import lsi.fonctionalite.exec.Gui;
-
 
 public class Gui extends JFrame {
 
     private JTextArea resultTextArea;
 
-    //DashBoard DashBoard = new DashBoard(this); // Passez la référence de la GUI
-
-    public Gui(){
-
+    public Gui() {
         setTitle("Gestion des Utilisateurs");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 200);
@@ -70,9 +64,6 @@ public class Gui extends JFrame {
             }
         });
 
-        ActionsBDD actionsBDD = new ActionsBDDImpl(); // Instanciez la classe ActionsBDDImpl
-
-
         btnAfficherUn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Demandez à l'utilisateur de saisir l'ID du programmeur
@@ -89,10 +80,7 @@ public class Gui extends JFrame {
                         String resultat = actionsBDD.printProgrammeur(idProgrammeur);
 
                         // Affichez les informations dans la zone de texte
-                        //JOptionPane.showMessageDialog(Gui.this, resultat, "Détails du Programmeur", JOptionPane.INFORMATION_MESSAGE);
-
                         afficherResultat(resultat);
-                        //resultTextArea.setText(resultat);
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(Gui.this, "L'ID doit être un nombre entier.", "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
@@ -123,7 +111,6 @@ public class Gui extends JFrame {
                 }
             }
         });
-
 
         btnAjouter.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -184,7 +171,6 @@ public class Gui extends JFrame {
             }
         });
 
-
         btnModifierSalaire.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Demandez à l'utilisateur de saisir l'ID du programmeur et le nouveau salaire
@@ -215,7 +201,6 @@ public class Gui extends JFrame {
             }
         });
 
-
         btnAutres.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(Gui.this, "Autres actions");
@@ -227,19 +212,16 @@ public class Gui extends JFrame {
                 System.exit(0);
             }
         });
-
-    }
-
-    public static void showMenuContent() {
-    }
-
-    public static void showDashboardContent() {
     }
 
     void afficherResultat(String resultat) {
         resultTextArea.setText(resultat);
     }
 
-    public void afficherTous() {
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            Gui gui = new Gui();
+            gui.setVisible(true);
+        });
     }
 }

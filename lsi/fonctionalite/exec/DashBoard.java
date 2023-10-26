@@ -11,11 +11,9 @@ import java.awt.event.ActionListener;
 
     private JPanel menuPanel;
     private JPanel contentPanel;
-    private static Gui Gui;
 
 
-    public DashBoard(Gui Gui) {
-        this.Gui = Gui;
+    public DashBoard() {
         setTitle("Dashboard");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -80,16 +78,6 @@ import java.awt.event.ActionListener;
         panel.add(btnSupprimer);
         panel.add(btnAjouter);
 
-        // Ajoutez une action pour le bouton "Afficher tous les programmes" ici
-        btnAfficherTous.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ActionsBDDImpl actionsBDD = new ActionsBDDImpl();
-                String resultat = actionsBDD.printAllProgrammeur();
-                Gui.afficherResultat(resultat); // Utilisez la référence de GUI pour appeler la méthode
-            }
-        });
-
 
         return panel;
     }
@@ -141,7 +129,7 @@ import java.awt.event.ActionListener;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            DashBoard dashboard = new DashBoard(Gui);
+            DashBoard dashboard = new DashBoard();
             dashboard.setVisible(true);
         });
     }
