@@ -23,13 +23,26 @@ public class Gui extends JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 
+        //JButton btnAfficherTous = new JButton("Afficher tous les programmes");
+
         JButton btnAfficherTous = new JButton("Afficher tous les programmes");
+        btnAfficherTous.setBackground(new Color(50, 150, 200)); // Couleur d'arrière-plan bleu-vert
+        btnAfficherTous.setForeground(Color.WHITE); // Couleur du texte en blanc
+        Font customFont = new Font("Arial", Font.BOLD, 14); // Police de caractères personnalisée
+        btnAfficherTous.setFont(customFont);
+
         JButton btnAfficherUn = new JButton("Afficher un programmeur");
         JButton btnSupprimer = new JButton("Supprimer un programmeur");
         JButton btnAjouter = new JButton("Ajouter un programmeur");
         JButton btnModifierSalaire = new JButton("Modifier le salaire");
         JButton btnAutres = new JButton("Autres");
+
+        //JButton btnQuitter = new JButton("Quitter le programme");
+
         JButton btnQuitter = new JButton("Quitter le programme");
+        btnQuitter.setBackground(new Color(200, 50, 50)); // Couleur d'arrière-plan rouge
+        btnQuitter.setForeground(Color.WHITE); // Couleur du texte en blanc
+        btnQuitter.setFont(customFont); // Utilise la même police que le bouton "Afficher tous les programmes"
 
         buttonPanel.add(btnAfficherTous);
         buttonPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espace vertical
