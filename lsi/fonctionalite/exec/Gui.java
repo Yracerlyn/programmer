@@ -15,7 +15,7 @@ public class Gui extends JFrame {
 
     private JTextArea resultTextArea;
 
-    DashBoard DashBoard = new DashBoard(this); // Passez la référence de la GUI
+    //DashBoard DashBoard = new DashBoard(this); // Passez la référence de la GUI
 
     public Gui(){
 
