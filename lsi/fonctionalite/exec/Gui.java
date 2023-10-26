@@ -15,13 +15,40 @@ public class Gui extends JFrame {
     public Gui() {
         setTitle("Gestion des Utilisateurs");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 200);
+        setSize(600, 200);
 
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
+        JPanel mainPanel = new JPanel(new BorderLayout());
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+        // Panneau gauche pour les boutons du menu
+        JPanel menuPanel = new JPanel();
+        menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
+
+        JButton btnDashboard = new JButton("Dashboard");
+        JButton btnMenu = new JButton("Menu");
+        JButton btnQuitter = new JButton("Quitter");
+
+        menuPanel.add(btnDashboard);
+        menuPanel.add(btnMenu);
+        menuPanel.add(btnQuitter);
+
+        mainPanel.add(menuPanel, BorderLayout.WEST);
+
+        // Panneau droit pour le contenu du dashboard
+        JPanel dashboardPanel = new JPanel();
+        resultTextArea = new JTextArea(10, 40);
+        resultTextArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(resultTextArea);
+        dashboardPanel.add(scrollPane);
+
+        mainPanel.add(dashboardPanel, BorderLayout.CENTER);
+
+        add(mainPanel);
+
+        //JPanel mainPanel = new JPanel();
+        //mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
+
+        //JPanel buttonPanel = new JPanel();
+        //buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 
         //JButton btnAfficherTous = new JButton("Afficher tous les programmes");
 
@@ -39,31 +66,31 @@ public class Gui extends JFrame {
 
         //JButton btnQuitter = new JButton("Quitter le programme");
 
-        JButton btnQuitter = new JButton("Quitter le programme");
+        //JButton btnQuitter = new JButton("Quitter le programme");
         btnQuitter.setBackground(new Color(200, 50, 50)); // Couleur d'arrière-plan rouge
         btnQuitter.setForeground(Color.WHITE); // Couleur du texte en blanc
         btnQuitter.setFont(customFont); // Utilise la même police que le bouton "Afficher tous les programmes"
 
-        buttonPanel.add(btnAfficherTous);
-        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espace vertical
-        buttonPanel.add(btnAfficherUn);
-        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        buttonPanel.add(btnSupprimer);
-        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        buttonPanel.add(btnAjouter);
-        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        buttonPanel.add(btnModifierSalaire);
-        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        buttonPanel.add(btnAutres);
-        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        buttonPanel.add(btnQuitter);
+        menuPanel.add(btnAfficherTous);
+        menuPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espace vertical
+        menuPanel.add(btnAfficherUn);
+        menuPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        menuPanel.add(btnSupprimer);
+        menuPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        menuPanel.add(btnAjouter);
+        menuPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        menuPanel.add(btnModifierSalaire);
+        menuPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        menuPanel.add(btnAutres);
+        menuPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        menuPanel.add(btnQuitter);
 
-        JScrollPane scrollPane = new JScrollPane();
+        //JScrollPane scrollPane = new JScrollPane();
         resultTextArea = new JTextArea(10, 40);
         resultTextArea.setEditable(false);
         scrollPane.setViewportView(resultTextArea);
 
-        mainPanel.add(buttonPanel);
+        mainPanel.add(menuPanel);
         mainPanel.add(Box.createRigidArea(new Dimension(10, 0))); // Espace horizontal
         mainPanel.add(scrollPane);
 
