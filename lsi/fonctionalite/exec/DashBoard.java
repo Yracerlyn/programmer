@@ -1,4 +1,4 @@
-package lsi.fonctionalite.exec;
+package lsi.fonctionalite.exec;//package lsi.fonctionalite.exec;
 
 import lsi.fonctionalite.data.ActionsBDDImpl;
 
@@ -6,11 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-/*public class DashBoard extends JFrame {
+public class DashBoard extends JFrame {
 
     private JPanel menuPanel;
     private JPanel contentPanel;
+    private JTextArea resultTextArea;
 
 
     public DashBoard() {
@@ -39,9 +39,9 @@ import java.awt.event.ActionListener;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(10, 10, 10, 10);
 
-        JButton btnDashboard = createGradientButton("Dashboard", new Color(96, 95, 228), new Color(153, 118, 229));
-        JButton btnMenu = createGradientButton("Menu", new Color(96, 95, 228), new Color(153, 118, 229));
-        JButton btnQuitter = createGradientButton("Quitter", new Color(96, 95, 228), new Color(153, 118, 229));
+        JButton btnDashboard = createSimpleColorButton("Dashboard", new Color(95, 96, 228));
+        JButton btnMenu = createSimpleColorButton("Menu", new Color(95, 96, 228));
+        JButton btnQuitter = createSimpleColorButton("Quitter", new Color(95, 96, 228));
 
         gbc.gridy++;
         panel.add(btnDashboard, gbc);
@@ -72,20 +72,28 @@ import java.awt.event.ActionListener;
         JButton btnAfficherUn = createSmallButton("Afficher un programmeur");
         JButton btnSupprimer = createSmallButton("Supprimer un programmeur");
         JButton btnAjouter = createSmallButton("Ajouter un programmeur");
-
+        
         panel.add(btnAfficherTous);
         panel.add(btnAfficherUn);
         panel.add(btnSupprimer);
         panel.add(btnAjouter);
 
+        JScrollPane scrollPane = new JScrollPane();
+        resultTextArea = new JTextArea(10, 40);
+        resultTextArea.setEditable(false);
+        scrollPane.setViewportView(resultTextArea);
 
         return panel;
+    }
+
+    public void afficherResultat(String resultat) {
+        resultTextArea.setText(resultat);
     }
 
 
 
     private JButton createSmallButton(String text) {
-        JButton button = createGradientButton(text, new Color(96, 95, 228), new Color(153, 118, 229));
+        JButton button = createSimpleColorButton(text, new Color(95, 96, 228));
         button.setPreferredSize(new Dimension(250, 50)); // Taille plus petite
         button.setVerticalTextPosition(AbstractButton.CENTER);
         button.setHorizontalTextPosition(AbstractButton.CENTER);
@@ -107,25 +115,13 @@ import java.awt.event.ActionListener;
         return panel;
     }
 
-    private JButton createGradientButton(String text, Color startColor, Color endColor) {
-        JButton button = new JButton(text) {
-            @Override
-            protected void paintComponent(Graphics g) {
-                Graphics2D g2 = (Graphics2D) g;
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-                GradientPaint paint = new GradientPaint(0, 0, startColor, getWidth(), getHeight(), endColor, true);
-                g2.setPaint(paint);
-                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
-
-                super.paintComponent(g);
-            }
-        };
-        button.setForeground(Color.WHITE);
-        button.setBorderPainted(false);
-        button.setPreferredSize(new Dimension(150, 50));
+    public static JButton createSimpleColorButton(String text, Color bgColor) {
+        JButton button = new JButton(text);
+        button.setBackground(bgColor);
         return button;
     }
+
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -133,4 +129,4 @@ import java.awt.event.ActionListener;
             dashboard.setVisible(true);
         });
     }
-}*/
+}
