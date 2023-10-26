@@ -141,6 +141,11 @@ public class Menu {
         System.out.println("5. Retour");
     }
 
+    
+    /** 
+     * @param choix
+     * @throws InvalidChoiceException
+     */
     public void validateChoice(int choix) throws InvalidChoiceException {
         if (choix < 1 || choix > 7) {
             throw new InvalidChoiceException("ERREUR! Veuillez entrer un nombre entre 1 et 6.");
