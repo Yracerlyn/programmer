@@ -156,7 +156,7 @@ public class ActionsBDDImpl implements ActionsBDD {
      * Affiche tous les programmeurs dans la base de données
      */
     @Override
-    public void printAllProgrammeur() {
+    public String printAllProgrammeur() {
         try {
             dataBaseConnection(); // Établir une connexion à la base de données
 
@@ -169,6 +169,8 @@ public class ActionsBDDImpl implements ActionsBDD {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(selectSQL);
 
+            StringBuilder result = new StringBuilder();
+
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String nom = resultSet.getString("NOM");
@@ -180,7 +182,7 @@ public class ActionsBDDImpl implements ActionsBDD {
                 float salaire = resultSet.getFloat("SALAIRE");
                 float prime = resultSet.getFloat("PRIME");
                 String pseudo = resultSet.getString("PSEUDO");
-                System.out.println(
+                result.append(
                         " id: " + id + "\n" +
                                 " Nom: " + nom + "\n" +
                                 " Prénom: " + prenom + "\n" +
@@ -198,9 +200,11 @@ public class ActionsBDDImpl implements ActionsBDD {
             resultSet.close();
             statement.close();
             dataBaseConnectionEnd();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return result.toString();
     }
 
     
