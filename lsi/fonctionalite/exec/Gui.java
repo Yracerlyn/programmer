@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import lsi.fonctionalite.exec.Gui;
+
 
 public class Gui extends JFrame {
 
@@ -235,4 +237,6 @@ public class Gui extends JFrame {
         resultTextArea.setText(resultat);
     }
 
+    public void afficherTous() {
+    }
 }
