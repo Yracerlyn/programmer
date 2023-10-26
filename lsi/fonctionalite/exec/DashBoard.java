@@ -1,4 +1,4 @@
-//package lsi.fonctionalite.exec;
+package lsi.fonctionalite.exec;//package lsi.fonctionalite.exec;
 
 import lsi.fonctionalite.data.ActionsBDDImpl;
 
@@ -6,8 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-/*public class DashBoard extends JFrame {
+public class DashBoard extends JFrame {
 
     private JPanel menuPanel;
     private JPanel contentPanel;
@@ -133,4 +132,4 @@ import java.awt.event.ActionListener;
             dashboard.setVisible(true);
         });
     }
-}*/
+}
