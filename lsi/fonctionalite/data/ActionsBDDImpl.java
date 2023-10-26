@@ -43,6 +43,10 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
+    
+    /** 
+     * @param idProgrammeur
+     */
     @Override
     public void deleteProgrammeur(int idProgrammeur) {
         try {
@@ -67,6 +71,10 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
+    
+    /** 
+     * @param programmeur
+     */
     @Override
     public void addProgrammeur(Programmeur programmeur) {
         try {
