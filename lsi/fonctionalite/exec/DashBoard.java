@@ -1,4 +1,4 @@
-package lsi.fonctionalite.exec;
+//package lsi.fonctionalite.exec;
 
 import lsi.fonctionalite.data.ActionsBDDImpl;
 
@@ -7,15 +7,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DashBoard extends JFrame {
+/*public class DashBoard extends JFrame {
 
     private JPanel menuPanel;
     private JPanel contentPanel;
-    private static Gui Gui;
 
 
-    public DashBoard(Gui Gui) {
-        this.Gui = Gui;
+    public DashBoard() {
         setTitle("Dashboard");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -80,16 +78,6 @@ public class DashBoard extends JFrame {
         panel.add(btnSupprimer);
         panel.add(btnAjouter);
 
-        // Ajoutez une action pour le bouton "Afficher tous les programmes" ici
-        btnAfficherTous.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ActionsBDDImpl actionsBDD = new ActionsBDDImpl();
-                String resultat = actionsBDD.printAllProgrammeur();
-                Gui.afficherResultat(resultat); // Utilisez la référence de GUI pour appeler la méthode
-            }
-        });
-
 
         return panel;
     }
@@ -141,8 +129,8 @@ public class DashBoard extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            DashBoard dashboard = new DashBoard(Gui);
+            DashBoard dashboard = new DashBoard();
             dashboard.setVisible(true);
         });
     }
-}
+}*/
