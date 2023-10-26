@@ -1,5 +1,7 @@
 package lsi.fonctionalite.exec;
 
+import lsi.fonctionalite.data.ActionsBDDImpl;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,8 +11,11 @@ public class DashBoard extends JFrame {
 
     private JPanel menuPanel;
     private JPanel contentPanel;
+    private static Gui Gui;
 
-    public DashBoard() {
+
+    public DashBoard(Gui Gui) {
+        this.Gui = Gui;
         setTitle("Dashboard");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -75,8 +80,21 @@ public class DashBoard extends JFrame {
         panel.add(btnSupprimer);
         panel.add(btnAjouter);
 
+        // Ajoutez une action pour le bouton "Afficher tous les programmes" ici
+        btnAfficherTous.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ActionsBDDImpl actionsBDD = new ActionsBDDImpl();
+                String resultat = actionsBDD.printAllProgrammeur();
+                Gui.afficherResultat(resultat); // Utilisez la référence de GUI pour appeler la méthode
+            }
+        });
+
+
         return panel;
     }
+
+
 
     private JButton createSmallButton(String text) {
         JButton button = createGradientButton(text, new Color(96, 95, 228), new Color(153, 118, 229));
@@ -85,11 +103,6 @@ public class DashBoard extends JFrame {
         button.setHorizontalTextPosition(AbstractButton.CENTER);
         return button;
     }
-
-
-
-
-
 
 
     private JPanel createContentPanel(String contentText) {
@@ -128,7 +141,7 @@ public class DashBoard extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            DashBoard dashboard = new DashBoard();
+            DashBoard dashboard = new DashBoard(Gui);
             dashboard.setVisible(true);
         });
     }

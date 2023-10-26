@@ -14,6 +14,9 @@ import lsi.fonctionalite.exec.Gui;
 public class Gui extends JFrame {
 
     private JTextArea resultTextArea;
+
+    DashBoard DashBoard = new DashBoard(this); // Passez la référence de la GUI
+
     public Gui(){
 
         setTitle("Gestion des Utilisateurs");
@@ -233,7 +236,7 @@ public class Gui extends JFrame {
     public static void showDashboardContent() {
     }
 
-    private void afficherResultat(String resultat) {
+    void afficherResultat(String resultat) {
         resultTextArea.setText(resultat);
     }
 
