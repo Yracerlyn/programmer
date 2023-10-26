@@ -15,6 +15,9 @@ public class Menu {
         actionsBDD = new ActionsBDDImpl();
     }
 
+    /** 
+     * Afficher le menu dans le terminale
+     */
     public void printMenu() {
         System.out.println("\n");
         System.out.println("Menu:");
@@ -29,6 +32,9 @@ public class Menu {
         System.out.println("Faites un choix !");
     }
 
+    /** 
+     * Gestion des choix des utilisateurs dans le Menu
+     */
     public void selectMenu() {
         boolean exitRequested = false;
         System.out.println(actionsBDD.nombreTotalProgrammeur());

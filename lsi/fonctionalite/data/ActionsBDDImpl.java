@@ -16,26 +16,36 @@ import lsi.fonctionalite.utils.Programmeur;
 
 public class ActionsBDDImpl implements ActionsBDD {
 
+    /** 
+     * Connection à la base de donnée
+     */
     @Override
     public void dataBaseConnection() {
         try {
+            // charge le pilote JDBC
             Class.forName("com.mysql.cj.jdbc.Driver");
+            //Établit la connexion à la base de données en utilisant les constantes pour l'URL, le nom d'utilisateur et le mot de passe.
             Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR,
                     Constantes.MOT_DE_PASSE);
         } catch (SQLException e) {
+            // En cas d'erreur SQL (par exemple, échec de connexion), cette exception sera capturée.
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
+            // En cas d'erreur de chargement du JDBC 
             e.printStackTrace();
         }
     }
 
+    /** 
+     * Déconnexion à la base de donnée
+     */
     @Override
     public void dataBaseConnectionEnd() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR,
-                    Constantes.MOT_DE_PASSE);
-            connection.close();
+                    Constantes.MOT_DE_PASSE); 
+            connection.close();// fermer la connexion
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -46,6 +56,8 @@ public class ActionsBDDImpl implements ActionsBDD {
     
     /** 
      * @param idProgrammeur
+     * Supprime un programmeur dans la base de donnée 
+     * Le programmeur avec l'id idPorgrammeur sera supprimer
      */
     @Override
     public void deleteProgrammeur(int idProgrammeur) {
@@ -74,6 +86,7 @@ public class ActionsBDDImpl implements ActionsBDD {
     
     /** 
      * @param programmeur
+     * Ajoute un programmeur dans la base de donnée
      */
     @Override
     public void addProgrammeur(Programmeur programmeur) {
@@ -108,6 +121,11 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
+    
+    /** 
+     * @param idProgrammeur
+     * @param newSalaire
+     */
     @Override
     public void modifySalaire(int idProgrammeur, float newSalaire) {
         try {
@@ -134,6 +152,9 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
+    /** 
+     * Affiche tous les programmeurs dans la base de données
+     */
     @Override
     public void printAllProgrammeur() {
         try {
@@ -182,6 +203,11 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
+    
+    /** 
+     * @param id
+     * Affiche le programmeur avec l'id renseigner
+     */
     @Override
     public void printProgrammeur(int id) {
         try {
@@ -226,6 +252,9 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
+    /** 
+     * Affiche le programmeur qui a le meilleur salaire
+     */
     @Override
     public void printBestSalaryProgrammeur() {
         try {
@@ -273,6 +302,11 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
+    
+    /** 
+     * @param responsable
+     * Affiche les programmeurs qui ont le même responsable
+     */
     @Override
     public void printSameResponsableProgrammeur(String responsable) {
         try {
@@ -309,6 +343,9 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
+    /** 
+     * Affiche les programmeur avec les mêmes hobby
+     */
     @Override
     public void printPorgrammerWithSameHobby() {
         try {
@@ -355,15 +392,16 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
+    /** 
+     * Affiche le diagramme selon des âges des programmeurs
+     */
     @Override
     public void diagramAgeOfProgrammeur() {
         try {
             dataBaseConnection(); // Établir une connexion à la base de données
 
-            // Récupérer l'année actuelle depuis votre classe constante
-            int anneeActuelle = Constantes.ANNEE_ACTUELLE; // Remplacez VotreClasseConstante par le nom réel de votre
-                                                           // classe constante
-
+            // Récupérer l'année actuelle depuis la classe constante
+            int anneeActuelle = Constantes.ANNEE_ACTUELLE; 
             // Créer une requête SQL pour sélectionner l'âge de tous les programmeurs
             String selectSQL = "SELECT NAISSANCE FROM PROGRAMMEUR";
 
@@ -405,6 +443,11 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
+    
+    /** 
+     * @param count
+     * @return String
+     */
     private String getStars(int count) {
         StringBuilder stars = new StringBuilder();
         for (int i = 0; i < count; i++) {
@@ -413,6 +456,10 @@ public class ActionsBDDImpl implements ActionsBDD {
         return stars.toString();
     }
 
+    
+    /** 
+     * @return int
+     */
     @Override
     public int nombreTotalProgrammeur() {
         int count = 0;
@@ -438,6 +485,11 @@ public class ActionsBDDImpl implements ActionsBDD {
         return count;
     }
 
+    
+    /** 
+     * @return float
+     * Calcul le salaire total dépensé par l'entreprise pour les programmeurs
+     */
     @Override
     public float totalSalaire() {
         float salaireTotal = 0;
@@ -464,6 +516,11 @@ public class ActionsBDDImpl implements ActionsBDD {
         return salaireTotal;
     }
 
+    
+    /** 
+     * @return int la moyenne d'âge des programmeur
+     * Calcul l'âge moyenne des programmeurs dans la base de donnée
+     */
     @Override
     public int ageMoyenneProgrammeur() {
         int moyenneAge = 0;
