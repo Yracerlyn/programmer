@@ -12,7 +12,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class Interface {
     private static ActionsBDD actionsBDD;
     private static JFrame frame;
@@ -193,7 +192,7 @@ public class Interface {
         resultTextArea.setBorder(new LineBorder(Color.WHITE, 1));
 
         Box horizontalBox = Box.createHorizontalBox();
-        horizontalBox.add(Box.createRigidArea(new Dimension(0,100)));
+        horizontalBox.add(Box.createRigidArea(new Dimension(0, 100)));
 
         // Ajoutez les éléments à afficher horizontalement
         horizontalBox.add(totalProgrammeursLabel);
@@ -329,44 +328,42 @@ public class Interface {
             resultTextArea.setText(result);
         } else if (option.equals("Diagramme moyenne d'âge des programmeurs")) {
             int[] countTable = actionsBDD.diagramInterface();
-    int countJunior = countTable[0];
-    int countExpert = countTable[1];
-    int countSenior = countTable[2];
+            int countJunior = countTable[0];
+            int countExpert = countTable[1];
+            int countSenior = countTable[2];
 
-    JFrame frame = new JFrame("Diagramme d'âge des programmeurs");
-    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    frame.setSize(600, 400);
+            JFrame frame = new JFrame("Diagramme d'âge des programmeurs");
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setSize(600, 400);
 
-    JPanel chartPanel = new JPanel() {
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            int barWidth = 100;
-            int barSpacing = 30;
-            int x = 50;
+            JPanel chartPanel = new JPanel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    int barWidth = 100;
+                    int barSpacing = 30;
+                    int x = 50;
 
-            // Dessiner les barres pour chaque catégorie d'âge
-            g.setColor(Color.blue);
-            g.fillRect(x, 300 - countJunior, barWidth, countJunior);
-            g.setColor(Color.green);
-            g.fillRect(x + barWidth + barSpacing, 300 - countExpert, barWidth, countExpert);
-            g.setColor(Color.red);
-            g.fillRect(x + 2 * (barWidth + barSpacing), 300 - countSenior, barWidth, countSenior);
+                    // Dessiner les barres pour chaque catégorie d'âge
+                    g.setColor(Color.blue);
+                    g.fillRect(x, 300 - countJunior, barWidth, countJunior);
+                    g.setColor(Color.green);
+                    g.fillRect(x + barWidth + barSpacing, 300 - countExpert, barWidth, countExpert);
+                    g.setColor(Color.red);
+                    g.fillRect(x + 2 * (barWidth + barSpacing), 300 - countSenior, barWidth, countSenior);
 
-            // Étiquettes pour les catégories d'âge
-            g.setColor(Color.black);
-            g.drawString("Junior (20-29 ans)", x, 320);
-            g.drawString("Expert (30-39 ans)", x + barWidth + barSpacing, 320);
-            g.drawString("Senior (40-50 ans)", x + 2 * (barWidth + barSpacing), 320);
-        }
-    };
+                    // Étiquettes pour les catégories d'âge
+                    g.setColor(Color.black);
+                    g.drawString("Junior (20-29 ans)", x, 320);
+                    g.drawString("Expert (30-39 ans)", x + barWidth + barSpacing, 320);
+                    g.drawString("Senior (40-50 ans)", x + 2 * (barWidth + barSpacing), 320);
+                }
+            };
 
-    frame.add(chartPanel);
-    frame.setVisible(true);
+            frame.add(chartPanel);
+            frame.setVisible(true);
 
-
-            
-        } else if(option.equals("Listes des responsables")){
+        } else if (option.equals("Listes des responsables")) {
             resultTextArea.setText(actionsBDD.printAllResponsable());
         }
     }
