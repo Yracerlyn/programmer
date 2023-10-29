@@ -33,3 +33,7 @@ Il propose plusieurs options:
     . Liste des activités des activités des programmeurs
     . Retour au menu principale.
 - Quitter le programme.
+
+# Interface Graphique:
+Pour lancer l'interface du programme il suffit de se rendre dans la classe Interface où toute l'interface y est implémenté.
+Aprés avoir lancer l'interface vous aurez une interface avec un dashboard à droite avec toutes les commandes possible comme dans la partie fonctionnalité. Et une zone de réponse où vous trouverez les résultats de vos manipulation.
