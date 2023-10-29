@@ -14,15 +14,17 @@ public interface ActionsBDD {
 
     public abstract void modifySalaire(int id, float newSalaire);
 
-    public abstract void printAllProgrammeur();
+    public abstract String printAllProgrammeur();
 
-    public abstract void printProgrammeur(int id);
+    public abstract String printProgrammeur(int id);
 
-    public abstract void printBestSalaryProgrammeur();
+    public abstract String printBestSalaryProgrammeur();
 
-    public abstract void printSameResponsableProgrammeur(String responsable);
+    public abstract String printSameResponsableProgrammeur(String responsable);
 
-    public abstract void printPorgrammerWithSameHobby();
+    public abstract String printAllResponsable();
+
+    public abstract String printPorgrammerWithSameHobby();
 
     public abstract void diagramAgeOfProgrammeur();
 
@@ -31,5 +33,7 @@ public interface ActionsBDD {
     public abstract float totalSalaire();
 
     public abstract int ageMoyenneProgrammeur();
+
+    public abstract int[] diagramInterface();
 
 }

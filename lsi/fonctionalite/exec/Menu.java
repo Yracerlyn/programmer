@@ -54,12 +54,12 @@ public class Menu {
 
                 switch (choix) {
                     case 1:
-                        actionsBDD.printAllProgrammeur();
+                        System.out.println(actionsBDD.printAllProgrammeur());
                         break;
                     case 2:
                         System.out.println("Donnez le numéro du programmeur que vous souhaitez afficher:\n");
                         int idPrintProgrammeur = scanner.nextInt();
-                        actionsBDD.printProgrammeur(idPrintProgrammeur);
+                        System.out.println(actionsBDD.printProgrammeur(idPrintProgrammeur));
                         break;
                     case 3:
                         System.out.println("Quelle est l'indentifiant du programmeur que vous souhaitez supprimer");
@@ -106,15 +106,15 @@ public class Menu {
                                 validateChoice(choix2);
                                 switch (choix2) {
                                     case 1:
-                                        actionsBDD.printBestSalaryProgrammeur();
+                                        System.out.println(actionsBDD.printBestSalaryProgrammeur());
                                         break;
                                     case 2:
                                         System.out.println("Dequel responsable s'agit-il ?");
                                         String responsableChoix = scanner5.nextLine();
-                                        actionsBDD.printSameResponsableProgrammeur(responsableChoix);
+                                        System.out.println(actionsBDD.printSameResponsableProgrammeur(responsableChoix));
                                         break;
                                     case 3:
-                                        actionsBDD.printPorgrammerWithSameHobby();
+                                        System.out.println(actionsBDD.printPorgrammerWithSameHobby()); 
                                         break;
                                     case 4:
                                         actionsBDD.diagramAgeOfProgrammeur();
