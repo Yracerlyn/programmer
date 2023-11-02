@@ -57,3 +57,9 @@ L'interface comporte un tableau de bord avec toutes les fonctionnalités du menu
         - diagramme des âges des programmeurs
     . La barre de menu horizentale est composé du nombre de programmeur dans l'entreprise, La moyenne d'âge des programmeur, le salaire total que verse l'entreprise, l'année en cours.
  Le résultat de chaque manipulation sera afficher dans la zone à droite. 
+
+ # Piste d'amélioration:
+ - Améliorer l'Interface graphique et la rendre plus dynamique
+ - Créer une table responsable pour différencier responsable et programmeur et faire un lien entre les deux tables
+ - Rajouter plus de fonction et plus d'options permettant une meilleur expérience utilisateur au utilisateur
+ 
