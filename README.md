@@ -9,6 +9,7 @@ Ce projet vous permet d'intéragir avec une base de donnée de programmeur.
 - Vérifier dans la classe CONSTANTES si tous les accés à la bdd soit correct. 
 - Se mettre dans la classe Interface et lancer le programme
 - Pour lancer le programme sur le terminal se mettre dans la classe Start est lancé le programme 
+- Le package comporte un bdd que vous pouvez utiliser pour tester le programme.
 
 # Détails des classe principales
 - package exec:
