@@ -200,7 +200,7 @@ public class Interface {
         horizontalBox.add(ageMoyenLabel);
         horizontalBox.add(Box.createRigidArea(new Dimension(90, 0))); // Ajoutez un espacement
         horizontalBox.add(totalSalaireLabel);
-        horizontalBox.add(Box.createRigidArea(new Dimension(90, 0))); // Ajoutez un espacement
+        horizontalBox.add(Box.createRigidArea(new Dimension(90, 0))); 
         horizontalBox.add(anneEnCoursLabel);
         JScrollPane scrollPane = new JScrollPane(resultTextArea);
         infoPanel.add(horizontalBox);
