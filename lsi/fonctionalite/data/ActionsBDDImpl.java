@@ -577,6 +577,10 @@ public class ActionsBDDImpl implements ActionsBDD {
         return moyenneAge;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String printAllResponsable() {
         try {
