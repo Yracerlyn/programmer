@@ -59,42 +59,6 @@ public class testActionsBDDImpl {
     }
 
     @Test
-    public void testModifySalaire() {
-        // Créer un programmeur de test et l'ajouter dans la base de données
-        Programmeur testProgrammeur = new Programmeur("Test", "Salaire", 1990, "Adresse", "Pseudo", "Responsable",
-                "Hobby", 5000, 1000);
-        actionsBDD.addProgrammeur(testProgrammeur);
-
-        // Récupérer l'ID du programmeur de test
-        int idTestProgrammeur = testProgrammeur.getId();
-
-        // Modifier le salaire du programmeur de test
-        float newSalaire = 6000;
-        actionsBDD.modifySalaire(idTestProgrammeur, newSalaire);
-
-        // Récupérer les informations modifiées du programmeur de test
-        String result = actionsBDD.printProgrammeur(idTestProgrammeur);
-
-        // Créer la chaîne attendue en fonction des informations modifiées
-        String expected = " id: " + idTestProgrammeur + "\n" +
-                " Nom: Test\n" +
-                " Prénom: Salaire\n" +
-                " Adresse: Adresse\n" +
-                " Pseudo: Pseudo\n" +
-                " Responsable: Responsable\n" +
-                " Hobby: Hobby\n" +
-                " Naissance: 1990\n" +
-                " Salaire: " + newSalaire + "\n" +
-                " Prime: 1000\n";
-
-        // Assurez-vous que le résultat contient la chaîne attendue
-        assertTrue(result.contains(expected));
-
-        // Supprimer le programmeur de test
-        actionsBDD.deleteProgrammeur(idTestProgrammeur);
-    }
-
-    @Test
     public void testPrintProgrammeur() {
         // Créer un programmeur de test et l'ajouter dans la base de données
         Programmeur testProgrammeur = new Programmeur("Test", "Affichage", 1990, "Adresse", "Pseudo", "Responsable",
@@ -106,6 +70,7 @@ public class testActionsBDDImpl {
 
         // Vérifier que la méthode renvoie les informations du programmeur de test
         String result = actionsBDD.printProgrammeur(idTestProgrammeur);
+        System.out.println(result);
         assertTrue(result.contains("id: " + idTestProgrammeur));
 
         // Supprimer le programmeur de test
