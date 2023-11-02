@@ -18,7 +18,7 @@ public class Menu {
     /** 
      * Afficher le menu dans le terminale
      */
-    public void printMenu() {
+    private void printMenu() {
         System.out.println("\n");
         System.out.println("Menu:");
         System.out.println("\n");

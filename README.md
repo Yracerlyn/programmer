@@ -1,5 +1,9 @@
 # Projet Java
 Ce projet vous permet d'intéragir avec une base de donnée de programmeur.
+- Membre : 
+    . RACERLYN Yessi
+    . El Mahdi ESSETNI
+    . Issam AZLOUK
 
 # Lancer le programme
 - Vérifier dans la classe CONSTANTES si tous les accés à la bdd soit correct. 
