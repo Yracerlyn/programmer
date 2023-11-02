@@ -148,7 +148,9 @@ public class Interface {
     }
 
     private static JTextArea resultTextArea;
-
+    /**
+     * Initialise et configure le panneau d'informations de l'interface utilisateur.
+     */
     private static void createInfoPanel() {
         infoPanel = new JPanel();
         infoPanel.setBackground(Color.decode("#FFFFFF"));
@@ -208,6 +210,10 @@ public class Interface {
 
     }
 
+    /**
+     * Gère les actions en réponse aux clics sur les boutons du tableau de bord.
+     * @param label Le libellé du bouton cliqué.
+     */
     private static void handleDashboardButtonClick(String label) {
         // Vous pouvez implémenter la logique pour chaque bouton ici
         if (label.equals("Tous les programmeurs")) {
@@ -300,6 +306,10 @@ public class Interface {
         }
     }
 
+    /**
+     * Gère les actions en réponse aux options du menu "Autres".
+     * @param option L'option sélectionnée.
+     */
     private static void handleAutresOptionClick(String option) {
         // Gérer les actions associées à chaque option ici
         if (option.equals("Qui est le programmeur le mieux payé")) {
