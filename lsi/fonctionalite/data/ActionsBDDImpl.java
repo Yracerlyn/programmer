@@ -16,7 +16,7 @@ import lsi.fonctionalite.utils.Programmeur;
 
 public class ActionsBDDImpl implements ActionsBDD {
 
-    /** 
+    /**
      * Connection à la base de donnée
      */
     @Override
@@ -24,19 +24,21 @@ public class ActionsBDDImpl implements ActionsBDD {
         try {
             // charge le pilote JDBC
             Class.forName("com.mysql.cj.jdbc.Driver");
-            //Établit la connexion à la base de données en utilisant les constantes pour l'URL, le nom d'utilisateur et le mot de passe.
+            // Établit la connexion à la base de données en utilisant les constantes pour
+            // l'URL, le nom d'utilisateur et le mot de passe.
             Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR,
                     Constantes.MOT_DE_PASSE);
         } catch (SQLException e) {
-            // En cas d'erreur SQL (par exemple, échec de connexion), cette exception sera capturée.
+            // En cas d'erreur SQL (par exemple, échec de connexion), cette exception sera
+            // capturée.
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            // En cas d'erreur de chargement du JDBC 
+            // En cas d'erreur de chargement du JDBC
             e.printStackTrace();
         }
     }
 
-    /** 
+    /**
      * Déconnexion à la base de donnée
      */
     @Override
@@ -44,7 +46,7 @@ public class ActionsBDDImpl implements ActionsBDD {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR,
-                    Constantes.MOT_DE_PASSE); 
+                    Constantes.MOT_DE_PASSE);
             connection.close();// fermer la connexion
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,11 +55,10 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
-    
-    /** 
+    /**
      * @param idProgrammeur
-     * Supprime un programmeur dans la base de donnée 
-     * Le programmeur avec l'id idPorgrammeur sera supprimer
+     *                      Supprime un programmeur dans la base de donnée
+     *                      Le programmeur avec l'id idPorgrammeur sera supprimer
      */
     @Override
     public void deleteProgrammeur(int idProgrammeur) {
@@ -83,10 +84,9 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
-    
-    /** 
+    /**
      * @param programmeur
-     * Ajoute un programmeur dans la base de donnée
+     *                    Ajoute un programmeur dans la base de donnée
      */
     @Override
     public void addProgrammeur(Programmeur programmeur) {
@@ -121,8 +121,7 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
-    
-    /** 
+    /**
      * @param idProgrammeur
      * @param newSalaire
      */
@@ -152,11 +151,9 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
-    
-    
-    /** 
+    /**
      * @return String
-     * Affiche tous les programmeurs dans la base de données
+     *         Affiche tous les programmeurs dans la base de données
      *
      */
     @Override
@@ -164,10 +161,12 @@ public class ActionsBDDImpl implements ActionsBDD {
         try {
             dataBaseConnection(); // Établir une connexion à la base de données
 
-            // Créer une requête SQL pour récupérer les informations de tous les programmeurs
+            // Créer une requête SQL pour récupérer les informations de tous les
+            // programmeurs
             String selectSQL = "SELECT * FROM PROGRAMMEUR";
 
-            Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR, Constantes.MOT_DE_PASSE);
+            Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR,
+                    Constantes.MOT_DE_PASSE);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(selectSQL);
 
@@ -187,16 +186,16 @@ public class ActionsBDDImpl implements ActionsBDD {
 
                 result.append(
                         " id: " + id + "\n" +
-                        " Nom: " + nom + "\n" +
-                        " Prénom: " + prenom + "\n" +
-                        " Adresse: " + adresse + "\n" +
-                        " Pseudo: " + pseudo + "\n" +
-                        " Responsable: " + responsable + "\n" +
-                        " Hobby: " + hobby + "\n" +
-                        " Naissance: " + naissance + "\n" +
-                        " Salaire: " + salaire + "\n" +
-                        " Prime: " + prime + "\n" +
-                        "\n");
+                                " Nom: " + nom + "\n" +
+                                " Prénom: " + prenom + "\n" +
+                                " Adresse: " + adresse + "\n" +
+                                " Pseudo: " + pseudo + "\n" +
+                                " Responsable: " + responsable + "\n" +
+                                " Hobby: " + hobby + "\n" +
+                                " Naissance: " + naissance + "\n" +
+                                " Salaire: " + salaire + "\n" +
+                                " Prime: " + prime + "\n" +
+                                "\n");
             }
 
             // Fermer la connexion
@@ -211,11 +210,10 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
-    
-    /** 
+    /**
      * @param id
      * @return String
-     * Affiche le programmeur avec l'id renseigner
+     *         Affiche le programmeur avec l'id renseigner
      */
     @Override
     public String printProgrammeur(int id) {
@@ -233,43 +231,44 @@ public class ActionsBDDImpl implements ActionsBDD {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             StringBuilder result = new StringBuilder();
-            if(resultSet.next()){
-            do {
-                id = resultSet.getInt("id");
-                String nom = resultSet.getString("NOM");
-                String prenom = resultSet.getString("PRENOM");
-                String adresse = resultSet.getString("ADRESSE");
-                String responsable = resultSet.getString("RESPONSABLE");
-                String hobby = resultSet.getString("HOBBY");
-                int naissance = resultSet.getInt("NAISSANCE");
-                float salaire = resultSet.getFloat("SALAIRE");
-                float prime = resultSet.getFloat("PRIME");
-                String pseudo = resultSet.getString("PSEUDO");
-                result.append(
-                        " id: " + id + "\n" +
-                                " Nom: " + nom + "\n" +
-                                " Prénom: " + prenom + "\n" +
-                                " Adresse: " + adresse + "\n" +
-                                " Pseudo: " + pseudo + "\n" +
-                                " Responsable: " + responsable + "\n" +
-                                " Hobby: " + hobby + "\n" +
-                                " Naissance: " + naissance + "\n" +
-                                " Salaire: " + salaire + "\n" +
-                                " Prime: " + prime + "\n");
-            }while(resultSet.next());
-        }else{
-            return "Il n'existe pas(ou plus) de programmeur avec l'id: "+ id + ".";
-        }
+            if (resultSet.next()) {
+                do {
+                    id = resultSet.getInt("id");
+                    String nom = resultSet.getString("NOM");
+                    String prenom = resultSet.getString("PRENOM");
+                    String adresse = resultSet.getString("ADRESSE");
+                    String responsable = resultSet.getString("RESPONSABLE");
+                    String hobby = resultSet.getString("HOBBY");
+                    int naissance = resultSet.getInt("NAISSANCE");
+                    float salaire = resultSet.getFloat("SALAIRE");
+                    float prime = resultSet.getFloat("PRIME");
+                    String pseudo = resultSet.getString("PSEUDO");
+                    result.append(
+                            " id: " + id + "\n" +
+                                    " Nom: " + nom + "\n" +
+                                    " Prénom: " + prenom + "\n" +
+                                    " Adresse: " + adresse + "\n" +
+                                    " Pseudo: " + pseudo + "\n" +
+                                    " Responsable: " + responsable + "\n" +
+                                    " Hobby: " + hobby + "\n" +
+                                    " Naissance: " + naissance + "\n" +
+                                    " Salaire: " + salaire + "\n" +
+                                    " Prime: " + prime + "\n");
+                } while (resultSet.next());
+            } else {
+                return "Il n'existe pas(ou plus) de programmeur avec l'id: " + id + ".";
+            }
 
-        return result.toString();
+            return result.toString();
         } catch (SQLException e) {
             e.printStackTrace();
             return "Erreur lors de la récupération des données.";
         }
     }
 
-    /** 
+    /**
      * Affiche le programmeur qui a le meilleur salaire
+     * 
      * @return String
      */
     @Override
@@ -323,11 +322,10 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
-    
-    /** 
+    /**
      * @param responsable
      * @return String
-     * Affiche les programmeurs qui ont le même responsable
+     *         Affiche les programmeurs qui ont le même responsable
      */
     @Override
     public String printSameResponsableProgrammeur(String responsable) {
@@ -351,7 +349,7 @@ public class ActionsBDDImpl implements ActionsBDD {
                     result.append(
                             " id: " + id + "\n" +
                                     " Nom: " + nom + "\n" +
-                                    " Prénom: " + prenom + "\n"+
+                                    " Prénom: " + prenom + "\n" +
                                     "_____________________________\n");
                 } while (resultSet.next());
             } else {
@@ -368,9 +366,9 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
-    /** 
+    /**
      * @return String
-     * Affiche les programmeur avec les mêmes hobby
+     *         Affiche les programmeur avec les mêmes hobby
      */
     @Override
     public String printPorgrammerWithSameHobby() {
@@ -405,7 +403,7 @@ public class ActionsBDDImpl implements ActionsBDD {
                     String hobbyType = entry.getKey();
                     List<String> programmers = entry.getValue();
 
-                    result.append(hobbyType + ": " + String.join(", ", programmers) +"\n");
+                    result.append(hobbyType + ": " + String.join(", ", programmers) + "\n");
                 }
             } else {
                 return "Aucun résultat trouvé. \n";
@@ -420,7 +418,7 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
-    /** 
+    /**
      * Affiche le diagramme selon des âges des programmeurs
      */
     @Override
@@ -429,7 +427,7 @@ public class ActionsBDDImpl implements ActionsBDD {
             dataBaseConnection(); // Établir une connexion à la base de données
 
             // Récupérer l'année actuelle depuis la classe constante
-            int anneeActuelle = Constantes.ANNEE_ACTUELLE; 
+            int anneeActuelle = Constantes.ANNEE_ACTUELLE;
             // Créer une requête SQL pour sélectionner l'âge de tous les programmeurs
             String selectSQL = "SELECT NAISSANCE FROM PROGRAMMEUR";
 
@@ -471,8 +469,7 @@ public class ActionsBDDImpl implements ActionsBDD {
         }
     }
 
-    
-    /** 
+    /**
      * @param count
      * @return String
      */
@@ -484,8 +481,7 @@ public class ActionsBDDImpl implements ActionsBDD {
         return stars.toString();
     }
 
-    
-    /** 
+    /**
      * @return int
      */
     @Override
@@ -513,10 +509,10 @@ public class ActionsBDDImpl implements ActionsBDD {
         return count;
     }
 
-    
-    /** 
+    /**
      * @return float
-     * Calcul le salaire total dépensé par l'entreprise pour les programmeurs
+     *         Calcul le salaire total dépensé par l'entreprise pour les
+     *         programmeurs
      */
     @Override
     public float totalSalaire() {
@@ -544,10 +540,9 @@ public class ActionsBDDImpl implements ActionsBDD {
         return salaireTotal;
     }
 
-    
-    /** 
+    /**
      * @return int la moyenne d'âge des programmeur
-     * Calcul l'âge moyenne des programmeurs dans la base de donnée
+     *         Calcul l'âge moyenne des programmeurs dans la base de donnée
      */
     @Override
     public int ageMoyenneProgrammeur() {
@@ -577,8 +572,7 @@ public class ActionsBDDImpl implements ActionsBDD {
         return moyenneAge;
     }
 
-    
-    /** 
+    /**
      * @return String
      */
     @Override
@@ -586,20 +580,23 @@ public class ActionsBDDImpl implements ActionsBDD {
         try {
             dataBaseConnection(); // Établir une connexion à la base de données
 
-            // Créer une requête SQL pour récupérer les informations de tous les programmeurs
+            // Créer une requête SQL pour récupérer les informations de tous les
+            // programmeurs
             String selectSQL = "SELECT DISTINCT RESPONSABLE FROM PROGRAMMEUR";
 
-            Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR, Constantes.MOT_DE_PASSE);
+            Connection connection = DriverManager.getConnection(Constantes.URL, Constantes.UTILISATEUR,
+                    Constantes.MOT_DE_PASSE);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(selectSQL);
 
             StringBuilder result = new StringBuilder();
 
             while (resultSet.next()) {
-                String responsable = resultSet.getString("RESPONSABLE");
-                result.append(
-                        " Responsable: " + responsable + "\n" 
-                        );
+                if (!(resultSet.getString("RESPONSABLE").equals("N/A"))) {
+                    String responsable = resultSet.getString("RESPONSABLE");
+                    result.append(
+                            " Responsable: " + responsable + "\n");
+                }
             }
 
             // Fermer la connexion
@@ -615,13 +612,13 @@ public class ActionsBDDImpl implements ActionsBDD {
     }
 
     @Override
-    public int[] diagramInterface(){
-        int [] countTable = new int[3];
+    public int[] diagramInterface() {
+        int[] countTable = new int[3];
         try {
             dataBaseConnection(); // Établir une connexion à la base de données
 
             // Récupérer l'année actuelle depuis la classe constante
-            int anneeActuelle = Constantes.ANNEE_ACTUELLE; 
+            int anneeActuelle = Constantes.ANNEE_ACTUELLE;
             // Créer une requête SQL pour sélectionner l'âge de tous les programmeurs
             String selectSQL = "SELECT NAISSANCE FROM PROGRAMMEUR";
 
@@ -647,9 +644,9 @@ public class ActionsBDDImpl implements ActionsBDD {
                     countSenior++;
                 }
             }
-            countTable[0]=countJunior;
-            countTable[1]=countExpert;
-            countTable[2]=countSenior;
+            countTable[0] = countJunior;
+            countTable[1] = countExpert;
+            countTable[2] = countSenior;
             // Fermer la connexion
             resultSet.close();
             statement.close();
@@ -661,4 +658,3 @@ public class ActionsBDDImpl implements ActionsBDD {
         return countTable;
     }
 }
-
