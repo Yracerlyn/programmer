@@ -1,10 +1,15 @@
 # Projet Java
 Ce projet vous permet d'intéragir avec une base de donnée de programmeur.
+- Membre : 
+    . RACERLYN Yessi
+    . El Mahdi ESSETNI
+    . Issam AZLOUK
 
 # Lancer le programme
 - Vérifier dans la classe CONSTANTES si tous les accés à la bdd soit correct. 
 - Se mettre dans la classe Interface et lancer le programme
 - Pour lancer le programme sur le terminal se mettre dans la classe Start est lancé le programme 
+- Le package comporte un bdd que vous pouvez utiliser pour tester le programme.
 
 # Détails des classe principales
 - package exec:
@@ -22,6 +27,9 @@ InvalidChoiceException: Classe qui permet de renvoyer un message d'erreur pour l
 - package data:
 ActionBDD: Interface pour le comportement générique du programme. Elle contient les méthodes principales du programme.
 ActionBDDImpl: Classe qui implémente l'interface ActionBDD et permet ainsi d'implémenter toutes les méthodes du programme.
+
+- package test:
+Permet de gérer les tests junit.
 
 # package supplémentaire:
 Les packages lib, .idea et out sont les packages pour assurer le bon fonctionnement du programme qui va de la connexion à la base de donnée MySql ou jdk.
@@ -57,3 +65,11 @@ L'interface comporte un tableau de bord avec toutes les fonctionnalités du menu
         - diagramme des âges des programmeurs
     . La barre de menu horizentale est composé du nombre de programmeur dans l'entreprise, La moyenne d'âge des programmeur, le salaire total que verse l'entreprise, l'année en cours.
  Le résultat de chaque manipulation sera afficher dans la zone à droite. 
+
+ # Piste d'amélioration:
+ - Améliorer l'Interface graphique et la rendre plus dynamique
+ - Créer une table responsable pour différencier responsable et programmeur et faire un lien entre les deux tables
+ - Rajouter plus de fonction et plus d'options permettant une meilleur expérience utilisateur au utilisateur
+ - Gérer les exceptions d'une manière plus SOLID
+ - Améliorer le principe d'ouvert/fermé.
+ 
